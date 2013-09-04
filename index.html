@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Nigelkelly.github.io by nigelkelly</title>
+    <title>nigelkelly.github.io by nigelkelly</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,7 +15,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Nigelkelly.github.io</h1>
+        <h1>nigelkelly.github.io</h1>
         <p></p>
 
 
@@ -24,42 +24,106 @@
       </header>
       <section>
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="the-dark-side-of-firbase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firbase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Dark Side of Firbase Syncing: Test Procedure and Results Included</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation and rubs against your trusted client side instincts and experience. Firebase, for the most part, really is quite a painless experience to code in.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>I say “for the most part” because there is a dark side. As I’ve said coding in it from a client side perspective is a pleasant experience. However I feel that its most marketed feature – real time syncing – can be an awkward and dislocating experience. Worse still there is a real risk that it can lose data. Syncing is a hard problem to solve and manage. I think Firebase gets us a good bit of the way there but it’s not bullet proof.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Firebase provides a number of syncing patterns for developers to work with. You need to understand how each of these work, their strengths and weaknesses, before choosing the most appropriate sync pattern for your app. In this post, I will talk about the .on() sync event pattern and show you the results of testing it and how it can lose data.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<h1>
+<a name="on-event-pattern" class="anchor" href="#on-event-pattern"><span class="octicon octicon-link"></span></a>.on() event pattern</h1>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here's how the pattern shapes up in javascript;</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">listAddress</span> <span class="o">=</span> <span class="s2">"https://yourtestbox.firebaseio.com/list"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">firebaseListRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Firebase</span><span class="p">(</span><span class="nx">listAddress</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<span class="kd">var</span> <span class="nx">onChildAdded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">snapshot</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// New data changes get automatically picked up here from all clients</span>
+  <span class="c1">// Sounds Awesome!! Update your local model and view with the latest data possible.</span>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+  <span class="nx">data</span> <span class="o">=</span> <span class="nx">snapshot</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">value</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"remote length is "</span><span class="o">+</span><span class="nx">snapshot</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+  <span class="c1">// WARNING: the callback does not guarantee that data changed locally was saved to firebase!!!</span>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<span class="p">}</span>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<span class="c1">// Set up the on sync event</span>
+<span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'child_added'</span><span class="p">,</span> <span class="nx">onChildAdded</span><span class="p">);</span>
+
+<span class="c1">// Create a method through which local user can add data to the firebase central repo via a button</span>
+<span class="kd">var</span> <span class="nx">createItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Use the firebase push() method to push create a new ref to push data to </span>
+  <span class="kd">var</span> <span class="nx">newItemForFirebaseListRef</span> <span class="o">=</span> <span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">push</span><span class="p">();</span>
+
+  <span class="c1">// Change our local data model</span>
+  <span class="kd">var</span> <span class="nx">incrementedData</span> <span class="o">=</span> <span class="o">++</span><span class="nx">data</span><span class="p">;</span>
+
+  <span class="c1">// Push updated local data to firebase repos</span>
+  <span class="nx">newItemForFirebaseListRef</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="s2">"value"</span><span class="o">:</span><span class="nx">incrementedData</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Data was not save to firebase"</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"This callback guarantees data was really saved to firebase"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span> 
+<span class="p">};</span>
+</pre></div>
+
+<p>How (I think) the .on() sync event works</p>
+
+<ul>
+<li>When your app initially starts a call is made to the remote firebase servers to retrieve data in json format</li>
+<li>.on() is a method that subscribes and listens for the initial payload of data. Once it arrives .on() fires up and you would typically have your own code in place to transfer the json into a local memory data structure and update the app view.</li>
+<li>The cool thing about .on() is that it is fired by all remote clients of the app who are listening for changes on the firebase servers. As soon one client changes their local data, that change can be broadcast to all other clients of your app and their models and views updated by their instances of .on(). Works great with data binding tools like knockout and angular. </li>
+<li>The dark truth about .on() is that its behavior mutates after the initial payload arrives from the firebase servers. When the user starts using the app and changing the model locally .on() will fire locally first, regardless of whether or not those local changes make it back to the firebase servers.</li>
+<li>A lot of the time the changes make it back to the firebase servers and the changes you just made are then broadcast out to all the other clients in mileseconds, picked up by their .on() instances and their local views and models updated accordingly. This is the good parts of .on().</li>
+<li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? </li>
+<li>But sometimes the changes don't make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the “local firebase” gets wiped. It's gone. You need to be aware of this risk when using the .on() pattern. </li>
+<li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can. For the most part, as once client creates a new item in a list all other clients will see that new item milliseconds later. The risk is that for a small part of the time other clients might see that change only minutes later or maybe not at all. It’s nearly perfect but not quite.</li>
+</ul><p>Is there a solution for the .on() problem?</p>
+
+<p>Luckily there is callback mechanism made available to the push() and set() methods in firebase that only gets called when the firebase servers have succeeded (or failed) in making a change that originated from your client. </p>
+
+<p>Unfortunately that’s as far as it goes. The firebase API currently has no convenience methods to help you get at the unsynced data and can’t store it for you locally once you refresh or navigate away. You would need to hack your own solution to store the unsynced local data and push it up to firebase when you refresh.</p>
+
+<p>I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my github account.</p>
+
+<p>I have put the above code in 2 folders called test-base-client-1 and test-base-client-2. The only difference is that var client = 1 in one client and client=2 in the other client so I can log the origin of where a list item is created. The idea is to simulate 2 remote clients on my Mac so I can make some observations around syncing. Here's what happened to me:</p>
+
+<ol>
+<li>I created 7 new items in client-1. The 7 new items were quickly created in client-2. It was more or less real time. Great this is what I expected.</li>
+<li><p>Now I created the next 4 new items in client-2. Client-1 syncs. Excellent.</p></li>
+<li><p>I stopped creating new items for about 30 seconds. Then I added 4 new items to client-1 without doing a page refresh. Client-2 was no longer syncing in real time. (You may need to repeat this process several times until real time syncing stops working.) Not quite what I expected. How long did it take to catch up?</p></li>
+<li><p>Well 6 minutes went by and client-2 just then synced with the 4 new items. (I still hadn’t done a page refresh.)</p></li>
+<li><p>Another important observation. When I used firebaseListRef.on('child_added', onChildAdded) I would expected this to be a callback from the firebase servers to notify all clients  that a new item was added. However my results showed that client-1 had picked up the new items locally, whilst client-2 was still waiting. Not sure if this is the behavior I wanted or expected. How can I be guaranteed that the data that was created locally has gone up to firebase servers and back again for the client it was created on?</p></li>
+<li><p>I got a “websocket network error”. This seemed to unblock the client-2 connection problems. </p></li>
+<li><p>I then did a page refresh. Both clients received all 15 items as I expected. I was still happy.</p></li>
+<li><p>I added another 5 items to client 1, waited 30 seconds and started to add new items. This time client-2 stays in sync despite the 30 second delay. In fact, I had to repeat this step several times before client-2 stopped syncing. There were now 40 items in the client-1 list and 35 items in the client-2 list.</p></li>
+<li><p>I now refreshed the page of client-1 immediately. I was concerned the onChildAdded event was only operating at a local level on client-1. My instinct was correct. The 5 new items that were just added to client-1 were no longer there because they were never saved to firebase in the first place. If this had been important data it would now be lost forver! Firebase only came back with 35 items in the list not the 40 items that you see above in client-1.</p></li>
+</ol>
       </section>
       <footer>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43775514-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
