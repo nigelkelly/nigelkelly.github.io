@@ -36,8 +36,8 @@
 
 <p>Firebase provides a number of syncing patterns for developers to work with. You need to understand how each of these work, their strengths and weaknesses, before choosing the most appropriate sync pattern for your app. In this post, I will talk about the .on() sync event pattern and show you the results of testing it and how it can lose data.</p>
 
-<h1>
-<a name="on-event-pattern" class="anchor" href="#on-event-pattern"><span class="octicon octicon-link"></span></a>.on() event pattern</h1>
+<h3>
+<a name="on-event-pattern" class="anchor" href="#on-event-pattern"><span class="octicon octicon-link"></span></a>.on() event pattern</h3>
 
 <p>The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here's how the pattern shapes up in javascript;</p>
 
@@ -46,31 +46,17 @@
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">onChildAdded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">snapshot</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// New data changes get automatically picked up here from all clients</span>
-  <span class="c1">// Sounds Awesome!! Update your local model and view with the latest data possible.</span>
-
+  <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">snapshot</span><span class="p">.</span><span class="nx">name</span><span class="p">();</span>
   <span class="nx">data</span> <span class="o">=</span> <span class="nx">snapshot</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">value</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"remote length is "</span><span class="o">+</span><span class="nx">snapshot</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span>
-
-  <span class="c1">// WARNING: the callback does not guarantee that data changed locally was saved to firebase!!!</span>
-
 <span class="p">}</span>
 
-<span class="c1">// Set up the on sync event</span>
 <span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'child_added'</span><span class="p">,</span> <span class="nx">onChildAdded</span><span class="p">);</span>
 
-<span class="c1">// Create a method through which local user can add data to the firebase central repo via a button</span>
 <span class="kd">var</span> <span class="nx">createItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-  <span class="c1">// Use the firebase push() method to push create a new ref to push data to </span>
   <span class="kd">var</span> <span class="nx">newItemForFirebaseListRef</span> <span class="o">=</span> <span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">push</span><span class="p">();</span>
-
-  <span class="c1">// Change our local data model</span>
   <span class="kd">var</span> <span class="nx">incrementedData</span> <span class="o">=</span> <span class="o">++</span><span class="nx">data</span><span class="p">;</span>
-
-  <span class="c1">// Push updated local data to firebase repos</span>
   <span class="nx">newItemForFirebaseListRef</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="s2">"value"</span><span class="o">:</span><span class="nx">incrementedData</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
-
             <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Data was not save to firebase"</span><span class="p">);</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -80,7 +66,8 @@
 <span class="p">};</span>
 </pre></div>
 
-<p>How (I think) the .on() sync event works</p>
+<h3>
+<a name="how-i-think-the-on-sync-event-works" class="anchor" href="#how-i-think-the-on-sync-event-works"><span class="octicon octicon-link"></span></a>How (I think) the .on() sync event works</h3>
 
 <ul>
 <li>When your app initially starts a call is made to the remote firebase servers to retrieve data in json format</li>
@@ -91,13 +78,17 @@
 <li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? </li>
 <li>But sometimes the changes don't make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the “local firebase” gets wiped. It's gone. You need to be aware of this risk when using the .on() pattern. </li>
 <li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can. For the most part, as once client creates a new item in a list all other clients will see that new item milliseconds later. The risk is that for a small part of the time other clients might see that change only minutes later or maybe not at all. It’s nearly perfect but not quite.</li>
-</ul><p>Is there a solution for the .on() problem?</p>
+</ul><h3>
+<a name="is-there-a-solution-for-the-on-problem" class="anchor" href="#is-there-a-solution-for-the-on-problem"><span class="octicon octicon-link"></span></a>Is there a solution for the .on() problem?</h3>
 
 <p>Luckily there is callback mechanism made available to the push() and set() methods in firebase that only gets called when the firebase servers have succeeded (or failed) in making a change that originated from your client. </p>
 
 <p>Unfortunately that’s as far as it goes. The firebase API currently has no convenience methods to help you get at the unsynced data and can’t store it for you locally once you refresh or navigate away. You would need to hack your own solution to store the unsynced local data and push it up to firebase when you refresh.</p>
 
 <p>I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my github account.</p>
+
+<h3>
+<a name="testing-on" class="anchor" href="#testing-on"><span class="octicon octicon-link"></span></a>Testing .on()</h3>
 
 <p>I have put the above code in 2 folders called test-base-client-1 and test-base-client-2. The only difference is that var client = 1 in one client and client=2 in the other client so I can log the origin of where a list item is created. The idea is to simulate 2 remote clients on my Mac so I can make some observations around syncing. Here's what happened to me:</p>
 
