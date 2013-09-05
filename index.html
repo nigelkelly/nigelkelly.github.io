@@ -41,9 +41,18 @@
 
 <p>The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here's how the pattern shapes up in html and javascript;</p>
 
-<pre><code>
+<p>index.html</p>
 
-</code></pre>
+<div class="highlight"><pre><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">'https://cdn.firebase.com/v0/firebase.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">"app.js"</span> <span class="na">defer=</span><span class="s">"defer"</span> <span class="err">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"createItem()"</span><span class="nt">&gt;&lt;/button&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+<p>app.js</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">listAddress</span> <span class="o">=</span> <span class="s2">"https://yourtestbox.firebaseio.com/list"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">firebaseListRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Firebase</span><span class="p">(</span><span class="nx">listAddress</span><span class="p">);</span>
