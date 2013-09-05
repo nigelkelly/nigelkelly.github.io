@@ -105,7 +105,7 @@
 
 <p>Unfortunately that’s as far as it goes. The firebase API currently has no convenience methods to help you get at the unsynced data and can’t store it for you locally once you refresh or navigate away. You would need to hack your own solution to store the unsynced local data and push it up to firebase when you refresh.</p>
 
-<p>I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my [github account]. (<a href="https://github.com/nigelkelly/firebase-tests">https://github.com/nigelkelly/firebase-tests</a>).</p>
+<p>I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my <a href="https://github.com/nigelkelly/firebase-tests">github account</a>.</p>
 
 <h3>
 <a name="testing-on" class="anchor" href="#testing-on"><span class="octicon octicon-link"></span></a>Testing .on()</h3>
@@ -115,10 +115,10 @@
 <ol>
 <li>I created 5 new items in client-1. The 5 new items quickly appeared in client-2. It was more or less real time. Great this is what I expected.</li>
 <li>Now I created the next 5 new items in client-2. Client-1 syncs. Excellent.
-<img src="https://www.dropbox.com/s/reh4n7z94qxu1pi/test1.tiff" alt="firebase real-time syncing">
+<img src="https://www.dropbox.com/s/mt3s1z8k0hnszw8/test1.png" alt="firebase real-time syncing">
 </li>
 <li>I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 30 secs and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
-<img src="https://www.dropbox.com/s/5vn1u45m1vmkeyl/test2.tiff" alt="firebase real-time syncing">
+<img src="https://www.dropbox.com/s/h8m0757ll7umrgo/test2.png" alt="firebase real-time syncing">
 </li>
 <li>Well 9 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)</li>
 <li>I got a “websocket network error” also. This seemed to unblock the client-2 connection problems. 
