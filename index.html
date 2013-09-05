@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="nigelkelly.github.io : " />
+    <meta name="description" content="callback : " />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>nigelkelly.github.io</title>
+    <title>callback</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/nigelkelly">View on GitHub</a>
 
-          <h1 id="project_title">nigelkelly.github.io</h1>
+          <h1 id="project_title">callback</h1>
           <h2 id="project_tagline"></h2>
 
         </header>
@@ -30,7 +30,7 @@
         <h3>
 <a name="the-dark-side-of-firbase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firbase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Dark Side of Firbase Syncing: Test Procedure and Results Included</h3>
 
-<p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation and rubs against your trusted client side instincts and experience. Firebase, for the most part, really is quite a painless experience to code in.</p>
+<p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.</p>
 
 <p>I say “for the most part” because there is a dark side. As I’ve said coding in it from a client side perspective is a pleasant experience. However I feel that its most marketed feature – real time syncing – can be an awkward and dislocating experience. Worse still there is a real risk that it can lose data. Syncing is a hard problem to solve and manage. I think Firebase gets us a good bit of the way there but it’s not bullet proof.</p>
 
@@ -39,7 +39,11 @@
 <h3>
 <a name="on-event-pattern" class="anchor" href="#on-event-pattern"><span class="octicon octicon-link"></span></a>.on() event pattern</h3>
 
-<p>The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here's how the pattern shapes up in javascript;</p>
+<p>The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here's how the pattern shapes up in html and javascript;</p>
+
+<pre><code>
+
+</code></pre>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">listAddress</span> <span class="o">=</span> <span class="s2">"https://yourtestbox.firebaseio.com/list"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">firebaseListRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Firebase</span><span class="p">(</span><span class="nx">listAddress</span><span class="p">);</span>
@@ -51,11 +55,16 @@
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"remote length is "</span><span class="o">+</span><span class="nx">snapshot</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">}</span>
 
+<span class="c1">// This gets fired each time a child is added to the firebaseListRef</span>
+<span class="c1">// from anyone anywhere in the world! Magic!!!</span>
 <span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'child_added'</span><span class="p">,</span> <span class="nx">onChildAdded</span><span class="p">);</span>
+
 
 <span class="kd">var</span> <span class="nx">createItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">newItemForFirebaseListRef</span> <span class="o">=</span> <span class="nx">firebaseListRef</span><span class="p">.</span><span class="nx">push</span><span class="p">();</span>
   <span class="kd">var</span> <span class="nx">incrementedData</span> <span class="o">=</span> <span class="o">++</span><span class="nx">data</span><span class="p">;</span>
+
+  <span class="c1">// This is how we upload data from here to firebaseListRef</span>
   <span class="nx">newItemForFirebaseListRef</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="s2">"value"</span><span class="o">:</span><span class="nx">incrementedData</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Data was not save to firebase"</span><span class="p">);</span>
@@ -66,6 +75,8 @@
 <span class="p">};</span>
 </pre></div>
 
+<p>If you set up your firebase account you can point this code to your firebase test sandbox and see how it works. It really is magic. Let's try and break down the magic.</p>
+
 <h3>
 <a name="how-i-think-the-on-sync-event-works" class="anchor" href="#how-i-think-the-on-sync-event-works"><span class="octicon octicon-link"></span></a>How (I think) the .on() sync event works</h3>
 
@@ -75,7 +86,7 @@
 <li>The cool thing about .on() is that it is fired by all remote clients of the app who are listening for changes on the firebase servers. As soon one client changes their local data, that change can be broadcast to all other clients of your app and their models and views updated by their instances of .on(). Works great with data binding tools like knockout and angular. </li>
 <li>The dark truth about .on() is that its behavior mutates after the initial payload arrives from the firebase servers. When the user starts using the app and changing the model locally .on() will fire locally first, regardless of whether or not those local changes make it back to the firebase servers.</li>
 <li>A lot of the time the changes make it back to the firebase servers and the changes you just made are then broadcast out to all the other clients in mileseconds, picked up by their .on() instances and their local views and models updated accordingly. This is the good parts of .on().</li>
-<li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? </li>
+<li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? Only if a user does not refresh or navigate away from the page whilst a disconnection is in play.</li>
 <li>But sometimes the changes don't make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the “local firebase” gets wiped. It's gone. You need to be aware of this risk when using the .on() pattern. </li>
 <li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can. For the most part, as once client creates a new item in a list all other clients will see that new item milliseconds later. The risk is that for a small part of the time other clients might see that change only minutes later or maybe not at all. It’s nearly perfect but not quite.</li>
 </ul><h3>
