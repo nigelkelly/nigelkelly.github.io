@@ -97,7 +97,7 @@
 <li>A lot of the time the changes make it back to the firebase servers and the changes you just made are then broadcast out to all the other clients in mil;eseconds, picked up by their .on() instances and their local views and models updated accordingly. This is the good parts of .on().</li>
 <li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? Only if a user does not refresh or navigate away from the page whilst a disconnection is in play.</li>
 <li>But sometimes the changes don't make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the “local firebase” gets wiped. The new locally created data is gone forever. You need to be aware of this risk when using the .on() pattern. </li>
-<li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can in Firebase. For the most part, as once client creates a new item in a list all other clients will see that new item milliseconds later. It’s nearly perfect but not quite. Certainly I don't think the .on() pattern could be used to sync important data.</li>
+<li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can in Firebase. For the most part, as one client creates a new item in a list all other clients will see that new item milliseconds later. It’s nearly there but not quite. Certainly I don't think the .on() pattern could be used to sync important data.</li>
 </ul><h3>
 <a name="is-there-a-solution-for-the-on-problem" class="anchor" href="#is-there-a-solution-for-the-on-problem"><span class="octicon octicon-link"></span></a>Is there a solution for the .on() problem?</h3>
 
@@ -117,10 +117,10 @@
 <li>Now I created the next 5 new items in client-2. Client-1 syncs. Excellent.
 <img src="images/firebase-tests/test1.png" alt="firebase real-time syncing">
 </li>
-<li>I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 30 secs and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
+<li>I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 15 mins and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
 <img src="images/firebase-tests/test2.png" alt="firebase real-time syncing diconnects">
 </li>
-<li>Well 9 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)</li>
+<li>Well 4 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)</li>
 <li>I got a “websocket network error” also. This seemed to unblock the client-2 connection problems. 
 <img src="images/firebase-tests/test3.png" alt="firebase real-time syncing reconnects">
 </li>
