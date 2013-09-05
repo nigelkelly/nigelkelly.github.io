@@ -30,8 +30,6 @@
         <h3>
 <a name="the-dark-side-of-firbase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firbase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Dark Side of Firbase Syncing: Test Procedure and Results Included</h3>
 
-<p><img src="http://flic.kr/p/fK64Rz" alt="test"></p>
-
 <p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.</p>
 
 <p>I say “for the most part” because there is a dark side. As I’ve said coding in it from a client side perspective is a pleasant experience. However I feel that its most marketed feature – real time syncing – can be an awkward and dislocating experience. Worse still there is a real risk that it can lose data. Syncing is a hard problem to solve and manage. I think Firebase gets us a good bit of the way there but it’s not bullet proof.</p>
@@ -99,7 +97,7 @@
 <li>A lot of the time the changes make it back to the firebase servers and the changes you just made are then broadcast out to all the other clients in mil;eseconds, picked up by their .on() instances and their local views and models updated accordingly. This is the good parts of .on().</li>
 <li>Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? Only if a user does not refresh or navigate away from the page whilst a disconnection is in play.</li>
 <li>But sometimes the changes don't make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the “local firebase” gets wiped. The new locally created data is gone forever. You need to be aware of this risk when using the .on() pattern. </li>
-<li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can in Firebase. For the most part, as once client creates a new item in a list all other clients will see that new item milliseconds later. It’s nearly perfect but not quite. Certainly I don't think the .on() pattern could be used to sync important data.</li>
+<li>.on() is the best and easiest pattern to implement to get as close to real time syncing as you can in Firebase. For the most part, as one client creates a new item in a list all other clients will see that new item milliseconds later. It’s nearly there but not quite. Certainly I don't think the .on() pattern could be used to sync important data.</li>
 </ul><h3>
 <a name="is-there-a-solution-for-the-on-problem" class="anchor" href="#is-there-a-solution-for-the-on-problem"><span class="octicon octicon-link"></span></a>Is there a solution for the .on() problem?</h3>
 
@@ -117,21 +115,21 @@
 <ol>
 <li>I created 5 new items in client-1. The 5 new items quickly appeared in client-2. It was more or less real time. Great this is what I expected.</li>
 <li>Now I created the next 5 new items in client-2. Client-1 syncs. Excellent.
-<img src="https://www.dropbox.com/s/mt3s1z8k0hnszw8/test1.png" alt="firebase real-time syncing">
+<img src="images/firebase-tests/test1.png" alt="firebase real-time syncing">
 </li>
-<li>I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 30 secs and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
-<img src="https://www.dropbox.com/s/h8m0757ll7umrgo/test2.png" alt="firebase real-time syncing">
+<li>I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 15 mins and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
+<img src="images/firebase-tests/test2.png" alt="firebase real-time syncing diconnects">
 </li>
-<li>Well 9 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)</li>
+<li>Well 4 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)</li>
 <li>I got a “websocket network error” also. This seemed to unblock the client-2 connection problems. 
-<a href="https://www.dropbox.com/s/jtl82kn5chxi77e/test3.tiff">https://www.dropbox.com/s/jtl82kn5chxi77e/test3.tiff</a>
+<img src="images/firebase-tests/test3.png" alt="firebase real-time syncing reconnects">
 </li>
 <li>I then did a page refresh. Both clients received all 20 items as I expected. I was still happy.</li>
 <li>I added another 5 items to client 1, waited 30 seconds and started to add new items. Client-2 stays in sync despite the 30 second delay. I had to repeat this step several times before client-2 stopped syncing. There were now 40 items in the client-1 list and 35 items in the client-2 list.
-<img src="https://www.dropbox.com/s/8cz7fr2nlqmjwk2/test4.tiff" alt="firebase real-time syncing broken">
+<img src="images/firebase-tests/test4.png" alt="firebase real-time syncing disconnects again">
 </li>
-<li>I now refreshed the page of client-1 immediately. I was concerned the onChildAdded event was only operating at a local level on client-1. My instinct was correct. The 5 new items that were just added to client-1 were no longer there because they were never saved to firebase in the first place. If this had been important data it would now be lost forver! Firebase only came back with 35 items in the list not the 40 items that you see above in client-1.
-<img src="https://www.dropbox.com/s/3sz6hs456pakyu3/test5.tiff" alt="firebase real-time syncing lost my data">
+<li>I now refreshed the page of client-1 immediately. I was concerned the onChildAdded event was only operating at a local level on client-1. My instinct was correct. The 5 new items that were just added to client-1 were no longer there because they were never saved to firebase in the first place. If this had been important data it would now be lost forver! Firebase only came back with 35 items in the list not the 40 items that you see above in client-1. Data has disappeared into the ether.
+<img src="images/firebase-tests/test5.png" alt="firebase real-time syncing lost my data">
 </li>
 </ol>
       </section>
