@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="callback : a blog" />
+    <meta name="description" content="callback : " />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/nigelkelly">View on GitHub</a>
 
           <h1 id="project_title">callback</h1>
-          <h2 id="project_tagline">a blog</h2>
+          <h2 id="project_tagline"></h2>
 
         </header>
     </div>
@@ -30,6 +30,18 @@
         <h3>
 <a name="the-dark-side-of-firbase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firbase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Dark Side of Firbase Syncing: Test Procedure and Results Included</h3>
 
+<<<<<<< HEAD
+=======
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+
+>>>>>>> baba4ec299b7895bb1f4cfafbfb6d1e0ef85c4e1
 
 <p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.</p>
 
