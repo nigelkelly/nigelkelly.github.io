@@ -1,8 +1,3 @@
----
-title: testing my post
-layout: default
----
-
 ### The Dark Side of Firebase Syncing: Test Procedure and Results Included
 
 I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.
