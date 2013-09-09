@@ -19,9 +19,8 @@
           <a id="forkme_banner" href="https://github.com/nigelkelly">View on GitHub</a>
 
           <h1 id="project_title">callback</h1>
-          <h2 id="project_tagline"></h2>
-          <a href="https://twitter.com/nigekelly" class="twitter-follow-button" data-show-count="false">Follow @nigekelly</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <h2 id="project_tagline">a blog</h2>
+
         </header>
     </div>
 
@@ -29,7 +28,7 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="the-dark-side-of-firebase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firebase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Good and the Bad of Firebase Syncing: Test Procedure and Results Included</h3>
+<a name="the-dark-side-of-firbase-syncing-test-procedure-and-results-included" class="anchor" href="#the-dark-side-of-firbase-syncing-test-procedure-and-results-included"><span class="octicon octicon-link"></span></a>The Dark Side of Firbase Syncing: Test Procedure and Results Included</h3>
 
 <p>I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.</p>
 
@@ -44,7 +43,7 @@
 
 <p>index.html</p>
 
-<div class="highlight"><pre><span class="nt">&lt;head&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">'https://cdn.firebase.com/v0/firebase.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
   <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">"app.js"</span> <span class="na">defer=</span><span class="s">"defer"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
@@ -55,7 +54,7 @@
 
 <p>app.js</p>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">listAddress</span> <span class="o">=</span> <span class="s2">"https://yourtestbox.firebaseio.com/list"</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">listAddress</span> <span class="o">=</span> <span class="s2">"https://yourtestbox.firebaseio.com/list"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">firebaseListRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Firebase</span><span class="p">(</span><span class="nx">listAddress</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
@@ -133,11 +132,9 @@
 <img src="images/firebase-tests/test5.png" alt="firebase real-time syncing lost my data">
 </li>
 </ol>
-<a href="https://news.ycombinator.com/item?id=6334385">Click to Comment</a>
       </section>
     </div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="nigekelly">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
@@ -156,11 +153,6 @@
             } catch(err) {}
           </script>
 
-  <!-- HitTail Code -->
-<script type="text/javascript">
-	(function(){ var ht = document.createElement('script');ht.async = true;
-	  ht.type='text/javascript';ht.src = '//108296.hittail.com/mlt.js';
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ht, s);})();
-</script>						
+
   </body>
 </html>
