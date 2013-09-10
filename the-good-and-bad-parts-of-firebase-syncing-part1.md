@@ -7,7 +7,7 @@ title: The Good and Bad of Firebase Syncing
 *5 Sept 2013*
 ## The Good and Bad of Firebase Syncing
 
-I have been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in client side javascript. You do not need server side javascript. You do not need node, meteor or derby. You do not have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.
+I have been messing around with Firebase now for a few months and I am very impressed with it. Its greatest single feature is that you can code completely in client side javascript. You do not need server side javascript. You do not need node, meteor or derby. You do not have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.
 
 I say for the most part because there is a dark side. As I have said coding in it from a client side perspective is a pleasant experience. However I feel that its most marketed feature (real time syncing) can be an awkward and dislocating experience. Worse still there is a real risk that it can lose data. Syncing is a hard problem to solve and manage. I think Firebase gets us a good bit of the way there but it is not bullet proof.
 
