@@ -97,5 +97,7 @@ I have put the code in 2 folders called test-base-client-1 and test-base-client-
 ![firebase real-time syncing lost my data](images/firebase-tests/test5.png)
 
 
-**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
+
+
 
