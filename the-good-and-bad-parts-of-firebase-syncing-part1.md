@@ -24,7 +24,7 @@ The .on() event pattern is probably the sync pattern that is most shown in the f
         var index = snapshot.name();
        data = snapshot.val().value;
        console.log("remote length is "+snapshot.val().value);
-   }
+    }
 
     // This gets fired each time a child is added to the firebaseListRef
     // from anyone anywhere in the world! Magic!!!
