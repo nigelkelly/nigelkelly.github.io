@@ -95,3 +95,8 @@ I have put the code in 2 folders called test-base-client-1 and test-base-client-
 ![firebase real-time syncing disconnects again](images/firebase-tests/test4.png)
 8. I now refreshed the page of client-1 immediately. I was concerned the onChildAdded event was only operating at a local level on client-1. My instinct was correct. The 5 new items that were just added to client-1 were no longer there because they were never saved to firebase in the first place. If this had been important data it would now be lost forver! Firebase only came back with 35 items in the list not the 40 items that you see above in client-1. Data has disappeared into the ether.
 ![firebase real-time syncing lost my data](images/firebase-tests/test5.png)
+
+
+[Comment on Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/)
+[Comment on Hackernews](https://news.ycombinator.com/item?id=6334385)
+
