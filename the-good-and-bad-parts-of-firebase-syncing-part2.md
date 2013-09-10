@@ -3,7 +3,10 @@ title: The Good and Bad of Firebase Syncing - A Followup
 ---
 
 <link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>	
-### The Good and Bad of Firebase Syncing - A Followup
+[Home](http://nigelkelly.github.io)
+
+*12 Sept 2013*
+## The Good and Bad of Firebase Syncing - A Followup
 
 I wrote about an issue I noted with firebase syncing last week. The article can be found here. I had observed that data created locally by a client will not necessarily make it back to the firebase servers, that there is no mechanism to warn the developer or the user when a connection is lost, firebase continues to operate as if nothing has happened and that if you do a page refresh, whilst a disconnection is in play, that data can be lost. You can download the tests here and run them yourself or you can watch this video I created of myself running the test.
 
