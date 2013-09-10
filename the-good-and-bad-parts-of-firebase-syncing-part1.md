@@ -2,7 +2,6 @@
 title: The Good and Bad of Firebase Syncing
 layout: post
 ---
-<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>	
 [Home](http://nigelkelly.github.io)
 
 *5 Sept 2013*
