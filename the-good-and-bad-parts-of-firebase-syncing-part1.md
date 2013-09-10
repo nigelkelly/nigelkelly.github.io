@@ -63,7 +63,14 @@ If you set up your firebase account you can point this code to your firebase tes
 * The dark truth about .on() is that its behavior mutates after the initial payload arrives from the firebase servers. When the user starts using the app and changing the model locally .on() will fire locally first, regardless of whether or not those local changes make it back to the firebase servers.
 * A lot of the time the changes make it back to the firebase servers and the changes you just made are then broadcast out to all the other clients in milleseconds, picked up by their .on() instances and their local views and models updated accordingly. This is the good parts of .on().
 * Sometimes those changes make it to the firebase servers quite slowly. It could take 10 mins in my experience. What seems to happen is that the connection back to firebase is lost and once this happens it can take several minutes to re-establish. I can live with this. Not the end of the world, right? Only if a user does not refresh or navigate away from the page whilst a disconnection is in play.
-* But sometimes the changes do not make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed won’t make it back to firebase. Furthermore once a user refreshes a page the local firebase gets wiped. The new locally created data is gone forever. You need to be aware of this risk when using the .on() pattern. 
+* But sometimes the changes do not make it back to firebase at all, are lost locally and so are lost forever. If a user refreshes or navigates away whilst a disconnection is in motion then the data the user just changed will not make it back to firebase. Furthermore once a user refreshes a page the local firebase gets wiped. The new locally created data is gone forever. You need to be aware of this risk when using the .on() pattern. 
 * .on() is the best and easiest pattern to implement to get as close to real time syncing as you can in Firebase. For the most part, as one client creates a new item in a list all other clients will see that new item milliseconds later. It is nearly there but not quite. Certainly I don't think the .on() pattern could be used to sync important data.
 
+### Is there a solution for the .on() problem?
+
+Luckily there is callback mechanism made available to the push() and set() methods in firebase that only gets called when the firebase servers have succeeded (or failed) in making a change that originated from your client. 
+
+Unfortunately that is as far as it goes. The firebase API currently has no convenience methods to help you get at the unsynced data and cannot store it for you locally once you refresh or navigate away. You would need to hack your own solution to store the unsynced local data and push it up to firebase when you refresh.
+ 
+I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my [github account](https://github.com/nigelkelly/firebase-tests).
 
