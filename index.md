@@ -1,8 +1,7 @@
 ---
 title: Home of nigelkelly.github.io
+layout: default
 ---
-
-<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>	
 [Home](http://nigelkelly.github.io)
 
 # Welcome to my Blog
