@@ -74,3 +74,20 @@ Unfortunately that is as far as it goes. The firebase API currently has no conve
  
 I now provide a walk through of testing I conducted which gives me good reason (I think) to reach the conclusions I’ve gotten to. You can find the code to run the test at my [github account](https://github.com/nigelkelly/firebase-tests).
 
+### Testing .on()
+
+I have put the code in 2 folders called test-base-client-1 and test-base-client-2. The only difference is that var client = 1 in one client and client=2 in the other client so I can log the origin of where a list item is created. The idea is to simulate 2 remote clients on my Mac so I can make some observations around syncing. Here iss what happened to me:
+
+1. I created 5 new items in client-1. The 5 new items quickly appeared in client-2. It was more or less real time. Great this is what I expected.
+2. Now I created the next 5 new items in client-2. Client-1 syncs. Excellent.
+![firebase real-time syncing](images/firebase-tests/test1.png)
+3. I stopped creating new items for about 30 seconds. Then I added 5 new items to client-1 without doing a page refresh. Client-2 was synced. Then I waited another 15 mins and added 5 new time to client-1. Client-2 stopped syncing. Not quite what I expected. How long did it take to catch up?
+![firebase real-time syncing diconnects](images/firebase-tests/test2.png)
+4. Well 4 minutes went by and client-2 just then synced with the 5 new items. (I still hadn’t done a page refresh.)
+5. I got a websocket network error also. This seemed to unblock the client-2 connection problems. 
+![firebase real-time syncing reconnects](images/firebase-tests/test3.png)
+6. I then did a page refresh. Both clients received all 20 items as I expected. I was still happy.
+7. I added another 5 items to client 1, waited 30 seconds and started to add new items. Client-2 stays in sync despite the 30 second delay. I had to repeat this step several times before client-2 stopped syncing. There were now 40 items in the client-1 list and 35 items in the client-2 list.
+![firebase real-time syncing disconnects again](images/firebase-tests/test4.png)
+8. I now refreshed the page of client-1 immediately. I was concerned the onChildAdded event was only operating at a local level on client-1. My instinct was correct. The 5 new items that were just added to client-1 were no longer there because they were never saved to firebase in the first place. If this had been important data it would now be lost forver! Firebase only came back with 35 items in the list not the 40 items that you see above in client-1. Data has disappeared into the ether.
+![firebase real-time syncing lost my data](images/firebase-tests/test5.png)
