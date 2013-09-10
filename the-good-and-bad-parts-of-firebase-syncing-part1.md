@@ -98,5 +98,6 @@ I have put the code in 2 folders called test-base-client-1 and test-base-client-
 
 
 [Comment on Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/)
+
 [Comment on Hackernews](https://news.ycombinator.com/item?id=6334385)
 
