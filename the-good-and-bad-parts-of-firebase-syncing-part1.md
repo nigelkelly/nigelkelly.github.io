@@ -1,3 +1,7 @@
+---
+title: This will be used as the title-tag of the page head
+---
+<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>	
 ### The Dark Side of Firbase Syncing: Test Procedure and Results Included
 
 I’ve been messing around with Firebase now for a few months and I an very impressed with it. Its greatest single feature is that you can code completely in “client side” javascript. You don’t need server side javascript. You don’t need node, meteor or derby. You don’t have to code in strange, alien javascript for the server which comes with a sense of dislocation. Firebase, for the most part, really is quite a painless experience to code in.
