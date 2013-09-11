@@ -10,19 +10,30 @@ layout: post
 
 I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a client will not necessarily make it back to the firebase servers, that there is no inbuilt mechanism to warn the developer or the user when a connection is lost, firebase continues to operate as if nothing has happened and that if you do a page refresh, whilst a disconnection is in play, that data can be lost. You can download the tests here and run them yourself or you can watch this video I created of myself running the test.
 
-[Click to see Video of Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
+[Click to see my Video of the Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
+<object width="640" height="360"><param name="movie" value="https://www.youtube.com/v/q_A732VS6C8&hl=en_US&feature=player_embedded&version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed src="https://www.youtube.com/v/q_A732VS6C8&hl=en_US&feature=player_embedded&version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="360"></embed></object>
 
 ### My test conditions
 
+I am behind a normal home router. 
+My connection is wifi (6.9Mbps donwload and 0.4Mbps up at moment, generally streams Netflix HD quite well). 
+I am using Snow Leaopard Mac.
+Safari Version 5.1.9 (6534.59.8) Chrome Version 29.0.1547.65. 
+
+### Running the test via file://
+
+The video above shows the test when run off file://mypath/index.html
+As you can see Firebase syncing stopped working quite quickly.
 
 
+### Running the test via local web server
 
+I set up a local web server using Google App Engine. I continued to observe that disconnections can occur rather quickly.
 
+### Running the test via remote web servers
 
-### Running the test via web servers
-
-I set up a local web server using Google App Engine. I continued to observe that disconnections can occur rather quickly. I then deployed the tests to the cloud at http://testfirebase.appspot.com I continued to add objects to firebase for about 2 hours and no disconnection occurred. Everything worked great. Firebase syncing was now redeemed.
-Open two web browser windows and point at them at http://testfirebase.appspot.com You should see things working fine.
+I then deployed the tests to [Google App Engine](http://testfirebase.appspot.com) I continued to add objects to firebase for about 2 hours and no disconnection occurred. Everything worked great. Firebase syncing was now redeemed.
+Open two web browser windows and point at them at (http://testfirebase.appspot.com) You should see things working fine.
 
 ### What conclusions can we draw
 
