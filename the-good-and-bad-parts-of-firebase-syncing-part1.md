@@ -17,6 +17,7 @@ Firebase provides a number of syncing patterns for developers to work with. You 
 
 The .on() event pattern is probably the sync pattern that is most shown in the firebase docs and tutorials. Here is how the pattern shapes up in html and javascript.
 	
+	```html
 	index.html
 
 	<head>
@@ -26,7 +27,7 @@ The .on() event pattern is probably the sync pattern that is most shown in the f
 	<body>
 	  <button onclick="createItem()"></button>
 	</body>
-	
+	'''
     app.js
 
     var listAddress = "https://yourtestbox.firebaseio.com/list";
