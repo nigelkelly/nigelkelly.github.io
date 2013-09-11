@@ -20,19 +20,24 @@ I wrote about an issue I noted with firebase syncing last week. The article can 
 * Safari Version 5.1.9 (6534.59.8) 
 * Chrome Version 29.0.1547.65. 
 
-### Running the test via file:// *FAIL*
+### Running the test via local file
 
 The video above shows the test when run off file://mypath/index.html
 As you can see Firebase syncing stopped working quite quickly and data was lost.
 
-### Running the test via local web server *FAIL*
+Result *FAIL*
+
+### Running the test via local web server 
 
 I set up a local web server using Google App Engine. I continued to observe that disconnections can occur rather quickly. Again data was lost.
+Result *FAIL*
 
-### Running the test via remote web servers *SUCCESS*
+### Running the test via remote web servers 
 
 I then deployed the tests to [Google App Engine](http://testfirebase.appspot.com) I continued to add objects to firebase for about 2 hours and no disconnection occurred. Everything worked great. No data was lost. Firebase syncing was now redeemed.
 Open two web browser windows and point at them at [testfirebase.appspot.com](http://testfirebase.appspot.com) You should see things working fine.
+
+Result *SUCCESS*
 
 ### What conclusions can we draw
 
@@ -41,3 +46,5 @@ Communicating with firebase in a development or test environment housed on your 
 However alot of developers, when they first try out an emerging software library, will want to test off file:// or a local web server. It is just convenient in many cases. Having to deploy to the cloud can be overkill if we just want to dip our toe in the water.
 
 Furthermore there are a whole class of apps that may run locally off the desktop (chrome web store apps, firefox add-ons, etc) or mobile device (phonegap) that will want to talk directly to firebase. The above test would indicate that this may be problematic for firebase.
+
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
