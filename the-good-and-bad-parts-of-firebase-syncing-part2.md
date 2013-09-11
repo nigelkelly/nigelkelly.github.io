@@ -12,8 +12,6 @@ I wrote about an issue I noted with firebase syncing last week. The article can 
 
 [Click to see my Video of the Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/NaMqK3Iibks" frameborder="0" allowfullscreen></iframe>
-
 ### My test conditions
 
 * I am behind a normal home router. 
