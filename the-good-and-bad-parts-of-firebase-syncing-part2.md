@@ -8,7 +8,7 @@ layout: post
 *12 Sept 2013*
 ## The Good and Bad of Firebase Syncing - A Followup
 
-I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a disconnected client will not make it back to the firebase servers and that if you do a page refresh, whilst a disconnection is in play, that data will be also lost locally. Firebase does not seem to do local persistent storage which is an important fallback for disconnection scenarios. You can download the tests [here]() and run them yourself or you can watch this video I created of myself running the test.
+I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a disconnected client will not make it back to the firebase servers and that if you do a page refresh, whilst a disconnection is in play, that data will be also lost locally. As data is not saved locally or remotely it is lost. Firebase does not seem to do local persistent storage which is an important fallback for disconnection scenarios. You can download the tests [here](https://github.com/nigelkelly/firebase-tests) and run them yourself or you can watch this video of me running the test.
 
 [Click to see my Video of the Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
 
