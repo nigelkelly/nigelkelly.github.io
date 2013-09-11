@@ -10,7 +10,11 @@
 
 <body>
 
-	
+	<p>Save to
+			<a href="#" onclick="window.open('http://delicious.com/save?v=5&provider={nigekelly}&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;">Delicious</a>
+			
+			<a href="https://getpocket.com/save" data-pocket-label="pocket" data-pocket-count="none" class="" data-lang="en">Pocket</a>
+	</p>
 	<section>
 	{{content}}
 	</section>
@@ -44,7 +48,7 @@
 
 	</p>				
 					
-	
+	<p>Back to <a href="https://nigelkelly.github.io">Home</a></p>
 
 	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
 	
