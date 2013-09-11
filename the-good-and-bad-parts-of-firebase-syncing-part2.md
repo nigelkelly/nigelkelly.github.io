@@ -8,7 +8,7 @@ layout: post
 *12 Sept 2013*
 ## The Good and Bad of Firebase Syncing - A Followup
 
-I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a disconnected client will not make it back to the firebase servers and that if you do a page refresh, whilst a disconnection is in play, that data will be also lost locally. As data is not saved locally or remotely it is lost. Firebase does not seem to do local persistent storage which is an important fallback for disconnection scenarios. You can download the tests [here](https://github.com/nigelkelly/firebase-tests) and run them yourself or you can watch this video of me running the test.
+I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a disconnected client will not make it back to the firebase servers and that if you do a page refresh, whilst a disconnection is in play, that data will be also lost locally. As data is not saved locally or remotely it is lost for good. Firebase does not seem to do local persistent storage which is an important fallback for disconnection scenarios. You can download the tests [here](https://github.com/nigelkelly/firebase-tests) and run them yourself or you can watch this video of me running the test.
 
 [Click to see my Video of the Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
 
@@ -25,19 +25,20 @@ I wrote about an issue I noted with firebase syncing last week. The article can 
 The video above shows the test when run off file://mypath/index.html
 As you can see Firebase syncing stopped working quite quickly and data was lost.
 
-Result *FAIL*
+*Result Fail*
 
 ### Running the test via local web server 
 
 I set up a local web server using Google App Engine. I continued to observe that disconnections can occur rather quickly. Again data was lost.
-Result *FAIL*
+
+*Result Fail*
 
 ### Running the test via remote web servers 
 
 I then deployed the tests to [Google App Engine](http://testfirebase.appspot.com) I continued to add objects to firebase for about 2 hours and no disconnection occurred. Everything worked great. No data was lost. Firebase syncing was now redeemed.
 Open two web browser windows and point at them at [testfirebase.appspot.com](http://testfirebase.appspot.com) You should see things working fine.
 
-Result *SUCCESS*
+*Result Success*
 
 ### What conclusions can we draw
 
