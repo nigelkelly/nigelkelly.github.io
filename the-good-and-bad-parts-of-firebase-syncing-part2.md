@@ -10,7 +10,7 @@ layout: post
 
 I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I had observed that data created locally by a client will not necessarily make it back to the firebase servers, that there is no inbuilt mechanism to warn the developer or the user when a connection is lost, firebase continues to operate as if nothing has happened and that if you do a page refresh, whilst a disconnection is in play, that data can be lost. You can download the tests here and run them yourself or you can watch this video I created of myself running the test.
 
-[Click to see Video of Test](http://www.youtube.com/watch#!v=q_A732VS6C8)
+[Click to see Video of Test](https://youtube.googleapis.com/v/q_A732VS6C8%26hl=en%26fs=1)
 
 ### My test conditions
 
