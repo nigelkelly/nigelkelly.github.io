@@ -8,7 +8,7 @@ layout: post
 *12 Sept 2013*
 ## The Good and Bad of Firebase Syncing - A Followup
 
-I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I just wanted to write a quick followup. There is good news and bad news.
+I wrote about an issue I noted with firebase syncing last week. The article can be found [here](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html). I just wanted to write a followup. There is good news and bad news.
 
 The bad news is that when I run my test locally then clients lose connections very quickly and data be lost. Here's two short videos of me running the test.
 
