@@ -59,4 +59,4 @@ However alot of developers, when they first try out an emerging software library
 
 Furthermore there are a whole class of apps that may run locally off the desktop (chrome web store apps, firefox add-ons, etc) or mobile device (phonegap) that will want to talk directly to firebase. The above test would indicate that this may be problematic for firebase. You could hack your own persistent local data storage with HTML5 and resync with Firebase after a connection is lost.
 
-###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1m8wgl/the_good_and_bad_of_firebase_syncing_a_followup/) or [Hacker News](https://news.ycombinator.com/item?id=6374063)**
