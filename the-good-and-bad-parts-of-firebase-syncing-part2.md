@@ -18,7 +18,7 @@ The bad news is that when I run my test locally then clients lose connections ve
 
 You can download the tests [here](https://github.com/nigelkelly/firebase-tests) and run them yourself if you want to.
 
-*The good news is that when I deployed the tests to Google App Engine that data was not lost despite the loss of client connections at times. It is a more robust solution that resembles real world app architecture.*
+**The good news is that when I deployed the tests to Google App Engine that data was not lost despite the loss of client connections at times. It is a more robust solution that resembles real world app architecture.**
 
 I also wanted to add that Firebase makes developing web apps so easy. There really is no backend to worry about. And the support at Firebase is really super.
 
