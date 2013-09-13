@@ -1,9 +1,8 @@
 ---
-title: The Good and Bad of Firebase Syncing - A Followup
+title: The Good and Bad of Firebase Syncing - A Follow Up
 layout: post
-tags: firebase
-categories: javascript
-excerpt: A test of firebase
+tags: firebase, javascript, syncing
+excerpt: A test of firebase syncing that shows how data can be lost when a client becomes disconnected from firebase
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
