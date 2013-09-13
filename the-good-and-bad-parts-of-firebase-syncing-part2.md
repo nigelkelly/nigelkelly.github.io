@@ -1,6 +1,9 @@
 ---
 title: The Good and Bad of Firebase Syncing - A Followup
 layout: post
+tags: firebase
+categories: javascript
+excerpt: A test of firebase
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
