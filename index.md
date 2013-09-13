@@ -1,7 +1,7 @@
 ---
 title: Articles on developing nobackend apps using Firebase, Knockout, PouchDB and Twitter Bootstrap
 layout: default
-tags: firebase, knockoutjs, knockout, ko, javascript, syncing, nobackend, pouchdb, bootstrap, html, css3, angular, ember, backbone, backendless
+tags: firebase, knockoutjs, knockout, ko, javascript, syncing, nobackend, pouchdb, bootstrap, html5, css3, angular, ember, backbone, backendless
 excerpt: This blog contains articles on developing nobackend web apps using new services like firebase, PouchDB, knockout, ember, angular and bootstrap. A backend server is no longer required. You can create full web apps with just plain simple javascript. Node, npm, server side js is a thing of the past.
 ---
 [Home](http://nigelkelly.github.io)
