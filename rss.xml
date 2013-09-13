@@ -1,0 +1,37 @@
+<? xml version=”1.0” ?>
+
+<rss version=”2.0”>
+
+<channel>
+
+	<title>wikiHow Articles by CoffeeLover</title>
+
+	<description>Articles about Firebase, Knocckout, javascript and nobackend development</description>
+
+	<link>http://nigelkelly.github.io</link>
+
+	<item>
+
+		<title>How to Understand the Meaning of NASCAR Flags</title>
+
+		<description>Confused on the NASCAR flags meanings?</description>
+
+		<link>http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html</link>
+
+	</item>
+
+	<item>
+
+		<title>The Good and Bad of Firebase Syncing - A Follow Up</title>
+
+		<description>A test of firebase syncing that shows how data can be lost when a client becomes disconnected from firebase</description>
+
+		<link>http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part2.html</link>
+
+	</item>
+
+
+
+</channel>
+
+</rss>
