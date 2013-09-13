@@ -3,17 +3,17 @@
 
 <channel>
 
-	<title>wikiHow Articles by CoffeeLover</title>
+	<title>Articles by Nigel Kelly</title>
 
-	<description>Articles about Firebase, Knocckout, javascript and nobackend development</description>
+	<description>Articles about Firebase, Knockout, javascript and nobackend development</description>
 
 	<link>http://nigelkelly.github.io</link>
 
 	<item>
 
-		<title>How to Understand the Meaning of NASCAR Flags</title>
+		<title>The Good and Bad of Firebase Syncing</title>
 
-		<description>Confused on the NASCAR flags meanings?</description>
+		<description>An introduction to firebase syncing</description>
 
 		<link>http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part1.html</link>
 
