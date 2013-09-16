@@ -186,6 +186,8 @@ You can now test this and you should see that new users are added easily. If you
 
 You can download a full working example of the code we have written so far here.
 
+####[Firebase Sign-Up Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)####
+
 ### Working with multiple ViewModels in Knockout
 
 We only have developed the sign-up View and ViewModel so far. Now add the following code to your in index.hmtl just before the closing body tag.
