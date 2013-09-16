@@ -27,26 +27,29 @@ And then throw in bootstrap so it will look presentable.
 
 Here is how the head in index.hmtl looks.
 
-	<head>
+```html
 
-		<script type='text/javascript'
-				src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js">
-		</script>
-		<script type='text/javascript'
-				src='https://cdn.firebase.com/v0/firebase.js'>
-		</script>
-		<script type='text/javascript'
-				src='https://cdn.firebase.com/v0/firebase-simple-login.js'>
-		</script>
-		<script type='text/javascript'
-				src="js/SignUpViewModel.js"
-				defer="defer">
-		</script>
+<head>
 
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<script type='text/javascript'
+			src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js">
+	</script>
+	<script type='text/javascript'
+			src='https://cdn.firebase.com/v0/firebase.js'>
+	</script>
+	<script type='text/javascript'
+			src='https://cdn.firebase.com/v0/firebase-simple-login.js'>
+	</script>
+	<script type='text/javascript'
+			src="js/SignUpViewModel.js"
+			defer="defer">
+	</script>
 
-	</head>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
+</head>
+
+```
 
 ### The View
 
@@ -56,33 +59,37 @@ Twitter Bootstrap is called in through the class attribute of our input and div 
 Here is how the body will look.
 
 
-	<body>
+```html
 
-	<div class="well" id="signup">
-		<div class="span">
-			<h1>Simple Signup and Login with Firebase</h1>
-			<p>We will also be using knockout and bootstrap</p>
-			<p>
-				<input type="text" class="input" placeholder="email" data-bind="value: userName">
-				<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
-			</p>
-			<p>	
-				<a class="btn btn-primary btn-large" data-bind="click:signup">
-					Sign Up
-				</a>
-			</p>
-			<p>
-				or if you've registered just ...
-			</p>
-			<p>
-			<a class="btn btn-default btn-small" data-bind="click: $root.goToLogin">
-				Log In
+<body>
+
+<div class="well" id="signup">
+	<div class="span">
+		<h1>Simple Signup and Login with Firebase</h1>
+		<p>We will also be using knockout and bootstrap</p>
+		<p>
+			<input type="text" class="input" placeholder="email" data-bind="value: userName">
+			<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
+		</p>
+		<p>	
+			<a class="btn btn-primary btn-large" data-bind="click:signup">
+				Sign Up
 			</a>
-			</p>
-		</div>
+		</p>
+		<p>
+			or if you've registered just ...
+		</p>
+		<p>
+		<a class="btn btn-default btn-small" data-bind="click: $root.goToLogin">
+			Log In
+		</a>
+		</p>
 	</div>
+</div>
 
-	</body>
+</body>
+
+```
 	
 If you open index.html you will see a basic sign-up page. 	
 
@@ -99,15 +106,15 @@ Create a new file called SignUpViewModel.js and copy the following code into it.
 	
 var SignUpViewModel = function() {
 
-var self = this;
+	var self = this;
 
-self.userName = ko.observable();
-self.userPassword = ko.observable();
+	self.userName = ko.observable();
+	self.userPassword = ko.observable();
 
-self.signup = function() {
-	console.log( "signing up "+self.userName() );
+	self.signup = function() {
+		console.log( "signing up "+self.userName() );
 
-}
+	}
 
 }
 
@@ -131,41 +138,48 @@ providers. Finally click enabled.
 In our code we need a reference to the root of our firebase and to the FirebaseSimpleLogin object which is specifically for email and password
 authentication to firebase. 
 
-	var SignUpViewModel = function() {
+```javascript 
 
-		var firebaseRoot = new Firebase("https://your-app.firebaseio.com");
+var SignUpViewModel = function() {
 
-		var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
-		 	// do login authentication checks
-		});
-		
-		.
-		.
-		.
+	var firebaseRoot = new Firebase("https://your-app.firebaseio.com");
+
+	var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
+	 	// do login authentication checks
+	});
 	
-	}
+	.
+	.
+	.
+
+}
+
+```
 
 We will add the login checks later but for now we are only doing sign up. Add the following code to the signup function.
 
+```javascript 
 
-	self.signup = function() {
-		
-		console.log( "signing up "+self.userName() );
-
-		authClient.createUser(self.userName(), self.userPassword(), function(error, user) {
-		 	// do signup authentication checks here
-			if (!error) {
-				// User not signed up so .... sign her up
-				console.log( "Signed up "+self.userName() );
-		    	console.log('Firebase User Id: ' + user.id + ', and Email: ' + user.email);
-				alert("You have been successfull signed up. Please login. Thank you.");
-		  	} else {
-				// User already signed up
-				alert( error.message +" Please login. Thank you.");
-			}
-		});
+self.signup = function() {
 	
-	}
+	console.log( "signing up "+self.userName() );
+
+	authClient.createUser(self.userName(), self.userPassword(), function(error, user) {
+	 	// do signup authentication checks here
+		if (!error) {
+			// User not signed up so .... sign her up
+			console.log( "Signed up "+self.userName() );
+	    	console.log('Firebase User Id: ' + user.id + ', and Email: ' + user.email);
+			alert("You have been successfull signed up. Please login. Thank you.");
+	  	} else {
+			// User already signed up
+			alert( error.message +" Please login. Thank you.");
+		}
+	});
+
+}
+
+```
 
 You can now test this and you should see that new users are added easily. If you try to sign up an existing user then you will be politely told to login.
 
@@ -174,103 +188,126 @@ You can download a full working example of the code we have written so far here.
 ### Working with multiple ViewModels in Knockout
 
 We only have developed the sign-up View and ViewModel so far. Now add the following code to your in index.hmtl just before the closing body tag.
+
+```html
 	
-	<body>
-	.
-	.
-	.
-	<div id="login" class="well">
+<body>
+.
+.
+.
+<div id="login" class="well">
+	<div  class="span">
+	  	<h1>Simple Signup and Login with Firebase<</h1>
+	    <p>We will also be using knockout and bootstrap</p>
+	    <p>
+	    	<input type="text" class="input" placeholder="Email" data-bind="value: userName">
+	  			<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
+	    </p>
+	    <p>	
+		    <a class="btn btn-primary btn-large" data-bind="click:login">
+				Log In
+		    </a>
+		</p>
+	</div>
+</div>
+	
+</body>
+
+```
+	
+This is very similar to the signup View. If you refresh you will now see two sections. One for signup and one for login. But we would rather have a new login page and make the signup page disappear when we click login. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
+
+```javascript 
+
+var ViewModels = {
+    signupVM : new SignUpViewModel(true),
+    loginVM : new LoginViewModel(false)
+
+}
+
+ko.applyBindings(ViewModels);
+	
+```
+
+Remember to add this file to the head your index.html It will be the last file as SignUpViewModel.js and LoginViewModel.js must be available. ko.applyBindings is called on both view models on initialization so that all our wiring is in place. 
+*Remember: Remove the ko.applyBindings call in SignUpViewModel.js.* 
+
+We now need to edit index.html as follows:
+
+```html
+
+<body>
+
+	<div id="signup" class="well" data-bind="visible: signupVM.isVisible">
 		<div  class="span">
+		    <h1>Simple Signup and Login with Firebase</h1>
+		    <p>We will also be using knockout and bootstrap</p>
+		    <p>
+		    	<input type="text" class="input" placeholder="email" data-bind="value: signupVM.userName">
+		  		<input type="password" class="input" placeholder="Password" data-bind="value: signupVM.userPassword">
+		    </p>
+		    <p>	
+			    <a class="btn btn-primary btn-large" data-bind="click:signupVM.signup">
+					Sign Up
+			    </a>
+			</p>
+			<p>
+			or if you've registered just ...
+			</p>
+			<p>
+			    <a class="btn btn-default btn-small" data-bind="click: loginVM.makeVisible">
+					Log In
+			    </a>
+		    </p>
+	    </div>
+	</div>
+
+	<div id="login" class="well" data-bind="visible: loginVM.isVisible">
+		<div class="span">
 		  	<h1>Simple Signup and Login with Firebase<</h1>
 		    <p>We will also be using knockout and bootstrap</p>
 		    <p>
-		    	<input type="text" class="input" placeholder="Email" data-bind="value: userName">
-		  			<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
+		    	<input type="text" class="input" placeholder="Email" data-bind="value: loginVM.userName">
+		  			<input type="password" class="input" placeholder="Password" data-bind="value: loginVM.userPassword">
 		    </p>
 		    <p>	
-			    <a class="btn btn-primary btn-large" data-bind="click:login">
+			    <a class="btn btn-primary btn-large" data-bind="click:loginVM.login">
 					Log In
 			    </a>
 			</p>
 		</div>
 	</div>
+
+
+</body>
 	
-	</body>
-	
-This is very similar to the signup View. If you refresh you will now see two sections. One for signup and one for login. But we would rather have a new login page and make the signup page disappear when we click login. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
+```
 
-	var ViewModels = {
-	    signupVM : new SignUpViewModel(true),
-	    loginVM : new LoginViewModel(false)
-
-	}
-
-	ko.applyBindings(ViewModels);
-	
-Remember to add this file to the head your index.html It will be the last file as SignUpViewModel.js and LoginViewModel.js must be available. ko.applyBindings is called on both view models on initialization so that all our wiring is in place. **Remove the ko.applyBindings call in SignUpViewModel.js.** 
-
-We now need to edit index.html as follows:
-
-	<body>
-
-		<div id="signup" class="well" data-bind="visible: signupVM.isVisible">
-			<div  class="span">
-			    <h1>Simple Signup and Login with Firebase</h1>
-			    <p>We will also be using knockout and bootstrap</p>
-			    <p>
-			    	<input type="text" class="input" placeholder="email" data-bind="value: signupVM.userName">
-			  		<input type="password" class="input" placeholder="Password" data-bind="value: signupVM.userPassword">
-			    </p>
-			    <p>	
-				    <a class="btn btn-primary btn-large" data-bind="click:signupVM.signup">
-						Sign Up
-				    </a>
-				</p>
-				<p>
-				or if you've registered just ...
-				</p>
-				<p>
-				    <a class="btn btn-default btn-small" data-bind="click: loginVM.makeVisible">
-						Log In
-				    </a>
-			    </p>
-		    </div>
-		</div>
-
-		<div id="login" class="well" data-bind="visible: loginVM.isVisible">
-			<div class="span">
-			  	<h1>Simple Signup and Login with Firebase<</h1>
-			    <p>We will also be using knockout and bootstrap</p>
-			    <p>
-			    	<input type="text" class="input" placeholder="Email" data-bind="value: loginVM.userName">
-			  			<input type="password" class="input" placeholder="Password" data-bind="value: loginVM.userPassword">
-			    </p>
-			    <p>	
-				    <a class="btn btn-primary btn-large" data-bind="click:loginVM.login">
-						Log In
-				    </a>
-				</p>
-			</div>
-		</div>
-
-
-	</body>
-	
 The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. The function loginVM.makeVisible is called when we click the login button in the sign-up view. 
 
 The other important point is that we are making use of a new knockout piece of wiring called visible. 
 
+```html
+
+
 	<div id="login" class="well" data-bind="visible: loginVM.isVisible">
+
+```
+
 	
 If the function loginVM.isVisible returns true then the the login view will render itself visible to the user. 
 
 
 Let us now look at the code in login.makeVisible
 
-	self.makeVisible = function() {
-		self.isVisible(true);
-		ViewModels.signupVM.isVisible(false);
-	}
+```javascript 
+
+self.makeVisible = function() {
+	self.isVisible(true);
+	ViewModels.signupVM.isVisible(false);
+}
+
+```
 	
 The function is telling the LoginViewModel to make itself visible and the SignupViewModel to disappear. The only problem is that when we try to login our authentication is broken.
 
@@ -278,44 +315,50 @@ The function is telling the LoginViewModel to make itself visible and the Signup
 
 Let us add an authClient object to handle login authentication and add some login handling.
 
-	var LoginViewModel = function(makeLoginViewVisible) {
+```javascript 
 
-		var firebaseRoot = new Firebase("https://flat-tasks.firebaseio.com"); 
+var LoginViewModel = function(makeLoginViewVisible) {
 
-		var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
-		 	// Login auth handling callback
-			if (error) {
-		    	// an error occurred while attempting login
-		    	console.log(error);
-				alert("User name or password is not correct. Please try again.");
-		  	} else if (user) {
-		    	// user authenticated with Firebase
-		    	console.log('Logging In User ID: ' + user.id + ', Provider: ' + user.email);  
-		    	alert("Create a new AppViewModel for your app")
-		  	} else {
-		    	// user is logged out
-				console.log("User logged out");
-		  	}
-		});
+	var firebaseRoot = new Firebase("https://flat-tasks.firebaseio.com"); 
 
-		.
-		.
-		.
-		
-	}
+	var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
+	 	// Login auth handling callback
+		if (error) {
+	    	// an error occurred while attempting login
+	    	console.log(error);
+			alert("User name or password is not correct. Please try again.");
+	  	} else if (user) {
+	    	// user authenticated with Firebase
+	    	console.log('Logging In User ID: ' + user.id + ', Provider: ' + user.email);  
+	    	alert("Create a new AppViewModel for your app")
+	  	} else {
+	    	// user is logged out
+			console.log("User logged out");
+	  	}
+	});
 
+	.
+	.
+	.
+	
+}
+
+```
 
 Now we you go to login you will get an alert box saying *Create a new AppViewModel for your app*. Well now it is time for you to create a new killer app or maybe a hosted task list for you and your team. The next step is to go to ViewModels.js and add in AppViewModel.js
 
-	var ViewModels = {
-	    signupVM : new SignUpViewModel(true),
-	    loginVM : new LoginViewModel(false),
-		appVM: new AppViewModel(false)
-    
-	}
-	
-	ko.applyBindings(ViewModels);
+```javascript 
 
+var ViewModels = {
+    signupVM : new SignUpViewModel(true),
+    loginVM : new LoginViewModel(false),
+	appVM: new AppViewModel(false)
+   
+}
+
+ko.applyBindings(ViewModels);
+
+```
 
 Now get hacking on AppViewModel.js
 
