@@ -363,11 +363,20 @@ Another key point is to do with multiple view models. Communications between vie
 
 ```
 
-Now we you go to login you will get an alert box saying 
+Now we you go to click login you will have successfully logged in if you get the following alert:
 
 *Create a new AppViewModel for your app*
 
-Well now it is time for you to create a new killer app or maybe a hosted task list for you and your team. The next step is to go to ViewModels.js and add in AppViewModel.js
+**You have now been full authenticated to proceed into our app!!**
+
+Full code for Sign-up and Sign-in authentication can be downloaded here:
+
+###[Firebase Sign-Up Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
+
+ 
+###Conclusion
+
+Well now it is time for you to create a new killer app or maybe a hosted task list for you and your team. The next step would be to go to ViewModels.js and add in AppViewModel.js
 
 *ViewModels.js*
 
@@ -377,7 +386,7 @@ var ViewModels = {
     signupVM : new SignUpViewModel(true),
     loginVM : new LoginViewModel(false),
 	appVM: new AppViewModel(false)
-	//, add new VMs here
+	//add other new VMs here
    
 }
 
