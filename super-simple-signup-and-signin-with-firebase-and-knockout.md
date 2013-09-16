@@ -163,6 +163,10 @@ We will add the login checks later but for now we are only doing sign up. Add th
 
 self.signup = function() {
 	
+	.
+	.
+	.
+	
 	console.log( "signing up "+self.userName() );
 
 	authClient.createUser(self.userName(), self.userPassword(), function(error, user) {
@@ -190,35 +194,10 @@ You can download a full working example of the code we have written so far here.
 
 ### Working with multiple ViewModels in Knockout
 
-We only have developed the sign-up View and ViewModel so far. Now add the following code to your in index.hmtl just before the closing body tag.
+We only have developed the **sign-up** View and ViewModel so far. We now need to develop the **login** View and ViewModel. Also we want to be able to dismiss and request our Views as the user requires them. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
 
-```html
-	
-<body>
-.
-.
-.
-<div id="login" class="well">
-	<div  class="span">
-	  	<h1>Simple Signup and Login with Firebase<</h1>
-	    <p>We will also be using knockout and bootstrap</p>
-	    <p>
-	    	<input type="text" class="input" placeholder="Email" data-bind="value: userName">
-	  			<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
-	    </p>
-	    <p>	
-		    <a class="btn btn-primary btn-large" data-bind="click:login">
-				Log In
-		    </a>
-		</p>
-	</div>
-</div>
-	
-</body>
 
-```
-	
-This is very similar to the signup View. If you refresh you will now see two sections. One for signup and one for login. But we would rather have a new login page and make the signup page disappear when we click login. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
+*ViewModels.js*
 
 ```javascript 
 
@@ -232,7 +211,9 @@ ko.applyBindings(ViewModels);
 	
 ```
 
-Remember to add this file to the head your index.html It will be the last file as SignUpViewModel.js and LoginViewModel.js must be available. ko.applyBindings is called on both view models on initialization so that all our wiring is in place. 
+Remember to add this file to the head in your index.html It will be the last file after SignUpViewModel.js  
+Whilst you are here, you may as well create a new javascript file called LoginViewModel.js
+ko.applyBindings is called on both view models on initialization so that all our wiring is in place. 
 *Remember: Remove the ko.applyBindings call in SignUpViewModel.js.* 
 
 We now need to edit index.html as follows:
@@ -286,7 +267,7 @@ We now need to edit index.html as follows:
 	
 ```
 
-The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. The function loginVM.makeVisible is called when we click the login button in the sign-up view. 
+The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. **See how the function loginVM.makeVisible is called when we click the login button in the sign-up view.** 
 
 The other important point is that we are making use of a new knockout piece of wiring called visible. 
 
@@ -298,55 +279,61 @@ The other important point is that we are making use of a new knockout piece of w
 ```
 
 	
-If the function loginVM.isVisible returns true then the the login view will render itself visible to the user. 
-
-
-Let us now look at the code in login.makeVisible
-
-```javascript 
-
-self.makeVisible = function() {
-	self.isVisible(true);
-	ViewModels.signupVM.isVisible(false);
-}
-
-```
-	
-The function is telling the LoginViewModel to make itself visible and the SignupViewModel to disappear. The only problem is that when we try to login our authentication is broken.
+If the function loginVM.isVisible returns true then the the login view will render itself visible to the user. If it is false then this view will be dismissed from the screen.
 
 ### Creating an Authentication Module
 
-Let us add an authClient object to handle login authentication and add some login handling.
+Now add the following code to LoginViewModel.js
 
 ```javascript 
 
 var LoginViewModel = function(makeLoginViewVisible) {
-
+		
 	var firebaseRoot = new Firebase("https://flat-tasks.firebaseio.com"); 
-
+	
 	var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
-	 	// Login auth handling callback
-		if (error) {
+		
+		//Here is some login authentication handling
+	 	if (error) {
 	    	// an error occurred while attempting login
 	    	console.log(error);
 			alert("User name or password is not correct. Please try again.");
 	  	} else if (user) {
 	    	// user authenticated with Firebase
-	    	console.log('Logging In User ID: ' + user.id + ', Provider: ' + user.email);  
+	    	console.log('Logging In User ID: ' + user.id + ', Provider: ' + user.provider);  
 	    	alert("Create a new AppViewModel for your app")
 	  	} else {
 	    	// user is logged out
 			console.log("User logged out");
 	  	}
-	});
-
-	.
-	.
-	.
 	
+	});
+	
+	var self = this;
+	
+	self.userName = ko.observable("");      
+	self.userPassword = ko.observable(""); 
+	self.isVisible = ko.observable(makeLoginViewVisible); 
+	
+	self.makeVisible = function() {
+		self.isVisible(true);
+		ViewModels.signupVM.isVisible(false);
+	}
+	
+	self.login = function() {
+		console.log("logging in");
+		self.isVisible(false);
+		authClient.login('password', {
+			email: self.userName(),
+		  	password: self.userPassword()
+	  	});     
+	}
+
 }
 
+
 ```
+	
 
 Now we you go to login you will get an alert box saying *Create a new AppViewModel for your app*. Well now it is time for you to create a new killer app or maybe a hosted task list for you and your team. The next step is to go to ViewModels.js and add in AppViewModel.js
 
