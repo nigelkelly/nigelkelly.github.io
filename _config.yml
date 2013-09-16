@@ -17,7 +17,7 @@ relative_permalinks: true
 permalink:     date
 paginate_path: 'page:num'
 
-markdown:      redcarpet
+markdown:      coderay
 markdown_ext:  markdown,mkd,mkdn,md
 textile_ext:   textile
 
