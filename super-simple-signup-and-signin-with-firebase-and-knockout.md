@@ -12,6 +12,10 @@ excerpt: In this tutorial you will learn how to set up an effective registration
 
 In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know node. We will be using normal javascript. No npm or requirejs is required;) It is a nobackend app.	
 
+Here is a demo of the app with authentication working on Google App Engine:
+
+[Working DEMO of the App. Check it out!](https://firebase-signup-signin.appspot.com/)
+
 ### Setting up index.html
 
 We will get the javascript libraries we need using script tags. I find requirejs is too complex for my needs. So I will set up the javascript and css through my head tags.
@@ -198,7 +202,7 @@ You can now test this and you should see that new users are added easily. If you
 
 You can download a full working example of the code we have written so far here.
 
-###[Firebase Sign-Up Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
+###[Download Firebase Sign-Up Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
 
 ### Working with multiple ViewModels in Knockout
 
@@ -221,6 +225,7 @@ ko.applyBindings(ViewModels);
 Remember to add this file to the head in your index.html It will be the last file after SignUpViewModel.js Whilst you are here, you may as well create a new javascript file called LoginViewModel.js
 
 ko.applyBindings is called on both view models on initialization so that all our wiring is in place. 
+
 *Remember: Remove the ko.applyBindings call in SignUpViewModel.js.* 
 
 We now need to edit index.html as follows:
@@ -371,7 +376,7 @@ Now we you go to click login you will have successfully logged in if you get the
 
 Full code for Sign-up and Sign-in authentication can be downloaded here:
 
-###[Firebase Sign-Up Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
+###[Download Firebase Sign-Up and Sign-In Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
 
  
 ###Conclusion
