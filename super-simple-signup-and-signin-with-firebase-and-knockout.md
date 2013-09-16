@@ -15,7 +15,7 @@ You don't even need to know node. We will be using normal javascript. No npm or 
 
 ### Setting up index.html
 
-We will get the javascript libraries we need using script tags. I cannot stand requirejs. It is too complex for my needs. If I ever work on a big app then I will look into using it but I cannot see the need for it in hobby apps.
+We will get the javascript libraries we need using script tags. I find requirejs is too complex for my needs. So I will set up the javascript and css through my head tags.
 
 So here are the scripts we need:
 * Knockout - so I can bind my application memory to my html view in an organised and simple way
@@ -25,18 +25,66 @@ So here are the scripts we need:
 
 And then throw in bootstrap so it will look presentable.
 
-Here is how it looks.
+Here is how the head in index.hmtl looks.
+
+	<head>
+
+		<script type='text/javascript'
+				src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js">
+		</script>
+		<script type='text/javascript'
+				src='https://cdn.firebase.com/v0/firebase.js'>
+		</script>
+		<script type='text/javascript'
+				src='https://cdn.firebase.com/v0/firebase-simple-login.js'>
+		</script>
+		<script type='text/javascript'
+				src="js/SignUpViewModel.js"
+				defer="defer">
+		</script>
+
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+	</head>
+
 
 ### The View
 
 Knockout uses a MVVM (Model-View-ViewModel) pattern. We are starting with the view which is the body of the index.html file. This is quite straight forward. 
 Twitter Bootstrap is called in through the class attribute of our input and div tags to make our page look nice. Knockout is called in through the data-bind attribute of our input tags and buttons. When the user keys in her user name and password, we want this data to go into application memory (the Model of MVC) and then on to the Firebase servers. Our View gives is the basic entry points that are required.
 
-### The Model
+Here is how the body will look.
 
-The Model is the data structure that we will hold in app memory so that the user can talk to firebase via the medium of our app views. The model for a new user that wishes to signup for our app is pretty simple. 
 
-See it here.
+	<body>
+
+	<div class="well" id="signup">
+		<div class="span">
+			<h1>Simple Signup and Login with Firebase</h1>
+			<p>We will also be using knockout and bootstrap</p>
+			<p>
+				<input type="text" class="input" placeholder="email" data-bind="value: userName">
+				<input type="password" class="input" placeholder="Password" data-bind="value: userPassword">
+			</p>
+			<p>	
+				<a class="btn btn-primary btn-large" data-bind="click:signup">
+					Sign Up
+				</a>
+			</p>
+			<p>
+				or if you've registered just ...
+			</p>
+			<p>
+			<a class="btn btn-default btn-small" data-bind="click: $root.goToLogin">
+				Log In
+			</a>
+			</p>
+		</div>
+	</div>
+
+	</body>
+	
+If you open index.html you will see a basic sign-up page. 	
 
 ### The ViewModel
 
@@ -45,14 +93,30 @@ The ViewModel is the magic wiring between the View and application memory. We ne
 * The user password
 * The sign up button that will submit this data to firebase
 
-As you can see our initial code very simple. We make the userName and userPassword variables special knockout observable type objects. This means the data for these variables in the view and in application memory is in sync. The developer does not need to worry about transferring data in the view to memory and vice versa. Here is index.html (the View) and SignViewModel.js (the ViewModel) side by side wired together with knockout.
+Create a new file called SignUpViewModel.js and copy the following code into it.
 
 
+	var SignUpViewModel = function() {
 
-One more thing Knockout will only do this wiring for us once we tell it to bind observable variables in memory to the view using:
+		var self = this;
 
-	ko.applyBindings(new SignUpViewModel(), document.getElementById("welcome") );
+		self.userName = ko.observable();
+		self.userPassword = ko.observable();
+
+		self.signup = function() {
+			console.log( "signing up "+self.userName() );
+
+		}
+
+	}
 	
+	ko.applyBindings(new SignUpViewModel(), document.getElementById("signup") );
+	
+Now fire up index.html in your browser. Fill out your user name and click sign-up. Nothing will happen other than the user-name getting logged to the console. This verifies knockout is working. We still need to implement firebase authentication.
+
+As you can see our initial code is very simple. We make the userName and userPassword variables special knockout observable type objects. This means the data for these variables in the view and in application memory is in sync. The developer does not need to worry about transferring data in the view to memory and vice versa. Here is index.html (the View) and SignViewModel.js (the ViewModel) side by side wired together with knockout.	
+
+![alt text](images/signup-signin/index-viewmodel-wiring.png "Knockout viewmodel view wiring image")
 	
 ### Firebase Signup Authentication
 
@@ -61,38 +125,57 @@ To use firebase you will need to setup an account and create a new firebase. Or 
 Authentication has to be configured. Click on the Auth icon in the Firebase side bar and then select Email & Password Authentication
 providers. Finally click enabled.
 
-In our code we need a reference to the root of our firebase which takes the form:
+In our code we need a reference to the root of our firebase and to the FirebaseSimpleLogin object which is specifically for email and password
+authentication to firebase. 
 
-	var firebaseRoot = new Firebase("https://your-app.firebaseio.com");
+	var SignUpViewModel = function() {
 
-Signup and Login authentication actions require a reference to the FirebaseSimpleLogin object which is specifically for email and password
-authentication to firebase.
+		var firebaseRoot = new Firebase("https://your-app.firebaseio.com");
 
-	var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
-	 	// do login authentication checks
-	});
+		var authClient = new FirebaseSimpleLogin(firebaseRoot, function(error, user) {
+		 	// do login authentication checks
+		});
+		
+		.
+		.
+		.
+	
+	}
 
-We will add the login checks later but for now we are only doing sign up. Here it goes.
+We will add the login checks later but for now we are only doing sign up. Add the following code to the signup function.
 
-	authClient.createUser(self.userName(), self.userPassword(), function(error, user) {
-	 	// do signup authentication checks here
-		if (!error) {
-			// User not signed up so .... sign her up
-			console.log( "Signed up "+self.userName() );
-	    	console.log('Firebase User Id: ' + user.id + ', and Email: ' + user.email);
-			alert("You have been successfull signed up. Please login. Thank you.");
-	  	} else {
-			// User already signed up
-			alert( error.message +" Please login. Thank you.");
-		}
-	});
+
+	self.signup = function() {
+		
+		console.log( "signing up "+self.userName() );
+
+		authClient.createUser(self.userName(), self.userPassword(), function(error, user) {
+		 	// do signup authentication checks here
+			if (!error) {
+				// User not signed up so .... sign her up
+				console.log( "Signed up "+self.userName() );
+		    	console.log('Firebase User Id: ' + user.id + ', and Email: ' + user.email);
+				alert("You have been successfull signed up. Please login. Thank you.");
+		  	} else {
+				// User already signed up
+				alert( error.message +" Please login. Thank you.");
+			}
+		});
+	
+	}
 
 You can now test this and you should see that new users are added easily. If you try to sign up an existing user then you will be politely told to login.
 
+You can download a full working example of the code we have written so far here.
+
 ### Working with multiple ViewModels in Knockout
 
-We only have developed the signup View and ViewModel so far. Now add the following code to your View in index.hmtl
-
+We only have developed the sign-up View and ViewModel so far. Now add the following code to your in index.hmtl just before the closing body tag.
+	
+	<body>
+	.
+	.
+	.
 	<div id="login" class="well">
 		<div  class="span">
 		  	<h1>Simple Signup and Login with Firebase<</h1>
@@ -109,8 +192,9 @@ We only have developed the signup View and ViewModel so far. Now add the followi
 		</div>
 	</div>
 	
+	</body>
 	
-This is very similar to the signup View. If you refresh you will now see two sections. One for signup and one for login. But we would rather have a new login page and make the signup page disappear. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
+This is very similar to the signup View. If you refresh you will now see two sections. One for signup and one for login. But we would rather have a new login page and make the signup page disappear when we click login. To do this we need to put in place a mechanism that will allow us to talk to both views at the same time so we can tell one to disappear and the other to display as required. We will create a new file called ViewModels.js
 
 	var ViewModels = {
 	    signupVM : new SignUpViewModel(true),
@@ -120,7 +204,9 @@ This is very similar to the signup View. If you refresh you will now see two sec
 
 	ko.applyBindings(ViewModels);
 	
-Remember to add this file to the head your index.html It will be the last file as SignUpViewModel.js and LoginViewModel.js must be available. ko.applyBindings is called on both view models on initialization so that all our wiring is in place. We need to edit index.html as follows:
+Remember to add this file to the head your index.html It will be the last file as SignUpViewModel.js and LoginViewModel.js must be available. ko.applyBindings is called on both view models on initialization so that all our wiring is in place. **Remove the ko.applyBindings call in SignUpViewModel.js.** 
+
+We now need to edit index.html as follows:
 
 	<body>
 
@@ -167,7 +253,16 @@ Remember to add this file to the head your index.html It will be the last file a
 
 	</body>
 	
-The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. The function loginVM.makeVisible is called when we click the login button in the sigup view. Let us now look at the code in login.makeVisible
+The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. The function loginVM.makeVisible is called when we click the login button in the sign-up view. 
+
+The other important point is that we are making use of a new knockout piece of wiring called visible. 
+
+	<div id="login" class="well" data-bind="visible: loginVM.isVisible">
+	
+If the function loginVM.isVisible returns true then the the login view will render itself visible to the user. 
+
+
+Let us now look at the code in login.makeVisible
 
 	self.makeVisible = function() {
 		self.isVisible(true);
