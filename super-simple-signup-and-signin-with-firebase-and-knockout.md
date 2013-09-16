@@ -130,10 +130,11 @@ As you can see our initial code is very simple. We make the userName and userPas
 	
 ### Firebase Signup Authentication
 
-To use firebase you will need to setup an account and create a new firebase. Or you can use the one here.
+To use firebase you will need to setup an account and create a new firebase. Or you can use the one provided in the tutorial.
 
-Authentication has to be configured. Click on the Auth icon in the Firebase side bar and then select Email & Password Authentication
-providers. Finally click enabled.
+If you are setting up your own firebase then authentication has to be configured. Click on the Auth icon in the Firebase side bar and then select Email & Password Authentication providers. Finally click enabled.
+
+![alt text](images/signup-signin/firebase-auth.png "Firebase authentication configuration menu")
 
 In our code we need a reference to the root of our firebase and to the FirebaseSimpleLogin object which is specifically for email and password
 authentication to firebase. 
