@@ -95,22 +95,25 @@ The ViewModel is the magic wiring between the View and application memory. We ne
 
 Create a new file called SignUpViewModel.js and copy the following code into it.
 
-
-	var SignUpViewModel = function() {
-
-		var self = this;
-
-		self.userName = ko.observable();
-		self.userPassword = ko.observable();
-
-		self.signup = function() {
-			console.log( "signing up "+self.userName() );
-
-		}
-
-	}
+```javascript
 	
-	ko.applyBindings(new SignUpViewModel(), document.getElementById("signup") );
+var SignUpViewModel = function() {
+
+var self = this;
+
+self.userName = ko.observable();
+self.userPassword = ko.observable();
+
+self.signup = function() {
+	console.log( "signing up "+self.userName() );
+
+}
+
+}
+
+ko.applyBindings(new SignUpViewModel(), document.getElementById("signup") );
+
+```
 	
 Now fire up index.html in your browser. Fill out your user name and click sign-up. Nothing will happen other than the user-name getting logged to the console. This verifies knockout is working. We still need to implement firebase authentication.
 
