@@ -23,4 +23,5 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 *12 Sept 2013* [Sortable Task Manager with Firebase and Knockout](http://nigelkelly.github.io/)
 *12 Sept 2013* [Sortable Kanban with Firebase and Knockout](http://nigelkelly.github.io/)
 *12 Sept 2013* [User Sign Up and Sign On with Firebase and Knockout](http://nigelkelly.github.io/)
+*12 Sept 2013* [Knockoutjs - Communications and messaging between multiple View Models](http://nigelkelly.github.io/)
 -->
