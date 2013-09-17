@@ -408,6 +408,8 @@ Now we you go to click login you will have successfully logged in if you get the
 
 *LOGIN SUCCESSFUL. Create a new AppViewModel for your app*
 
+![alt text](images/signup-signin/firebase-login-success.png "Firebase login success")
+
 **You have now been full authenticated to proceed into our app!!**
 
 Full code for Sign-up and Sign-in authentication can be downloaded here:
