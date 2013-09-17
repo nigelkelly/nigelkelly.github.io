@@ -12,9 +12,7 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 [Simple Sign-Up and Sign-In with Firebase and Knockout](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html) *17 Sept 2013* 
 
-In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build.
-
-###[Read More](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html)
+In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build. **[Read More >>> ](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html)**
 
 [The Good and Bad of Firebase Syncing - A Followup](http://nigelkelly.github.io/the-good-and-bad-parts-of-firebase-syncing-part2.html) *12 Sept 2013* 
 
