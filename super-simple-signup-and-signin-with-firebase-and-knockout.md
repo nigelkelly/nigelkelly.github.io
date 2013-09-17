@@ -14,7 +14,7 @@ In this tutorial you will learn how to set up an effective registration and auth
 
 Here is a working demo of the what you will develop with full authentication working on Google App Engine:
 
-[Working DEMO of Firebase sign-up and sign-in authentication. Check it out!](https://firebase-signup-signin.appspot.com/)
+###[Working DEMO of Firebase sign-up and sign-in authentication. Check it out!](https://firebase-signup-signin.appspot.com/)
 
 ### Setting up index.html
 
