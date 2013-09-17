@@ -20,17 +20,6 @@ Here is a working demo of the what you will develop with full authentication wor
 
 We will get the javascript libraries we need using script tags. I find requirejs is too complex for my needs. So I will set up the javascript and css through my head tags.
 
-So here are the scripts we need:
-
-* Knockout - so I can bind my application memory to my html view in an organised and simple way
-* Firebase - so I can access a database in the cloud that talks easily with my javascript
-* Firebase-simple-login - so I can setup user signup and login really easily
-* My own view models - the ko wiring from js to the html views
-
-And then throw in bootstrap so it will look presentable.
-
-Here is how the head in index.hmtl looks.
-
 *index.html*
 
 ```html
@@ -56,6 +45,15 @@ Here is how the head in index.hmtl looks.
 </head>
 
 ```
+
+What are these scripts for?
+
+* Knockout - so I can bind my application memory to my html view in an organised and simple way
+* Firebase - so I can access a database in the cloud that talks easily with my javascript
+* Firebase-simple-login - so I can setup user signup and login really easily
+* My own view models - the ko wiring from js to the html views
+
+And then throw in bootstrap so it will look presentable.
 
 ### The View
 
