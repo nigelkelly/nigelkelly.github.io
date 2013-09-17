@@ -1,5 +1,5 @@
 ---
-title: Super Simple Signup and Login with Firebase (no backend required)
+title: Super Simple Signup and Login with Firebase and Knockoutjs
 layout: post
 tags: firebase, knockoutjs, knockout, ko, javascript, syncing, nobackend
 excerpt: In this tutorial you will learn how to set up an effective registration and authentication process for your web app using just Firebase, Knockout and Twitter Bootstrap. This is a nobackend app.
@@ -10,7 +10,7 @@ excerpt: In this tutorial you will learn how to set up an effective registration
 *19 Sept 2013*
 ## Firebase signup and login tutorial
 
-In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build.
+In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, knockoutjs and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build.
 
 Here is a working demo of the what you will develop with full authentication working on Google App Engine:
 
@@ -130,9 +130,9 @@ ko.applyBindings( new SignUpViewModel() );
 
 ```
 	
-Now fire up index.html in your browser. Fill out your user name and click sign-up. Nothing will happen other than the user-name getting logged to the console log. This verifies knockout is working. We still need to implement firebase authentication.
+Now fire up index.html in your browser. Fill out your user name and click sign-up. Nothing will happen other than the user-name getting logged to the console log. This verifies knockoutjs is working. We still need to implement firebase authentication.
 
-As you can see our initial code is very simple. We make the userName and userPassword variables special knockout observable type objects. This means the data for these variables in the view and in application memory is in sync. The developer does not need to worry about transferring data in the view to memory and vice versa. Here is index.html (the View) and SignUpViewModel.js (the View Model) side by side wired together with knockout.	
+As you can see our initial code is very simple. We make the userName and userPassword variables special knockoutjs observable type objects. This means the data for these variables in the view and in application memory is in sync. The developer does not need to worry about transferring data in the view to memory and vice versa. Here is index.html (the View) and SignUpViewModel.js (the View Model) side by side wired together with knockout.	
 
 ![alt text](images/signup-signin/index-viewmodel-wiring.png "Knockout viewmodel view wiring image")
 	
