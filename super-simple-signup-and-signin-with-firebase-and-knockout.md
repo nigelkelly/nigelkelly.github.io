@@ -10,11 +10,11 @@ excerpt: In this tutorial you will learn how to set up an effective registration
 *19 Sept 2013*
 ## Firebase signup and login tutorial
 
-In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know node. We will be using normal javascript. No npm or requirejs is required;) It is a nobackend app.	
+In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockout and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build.
 
-Here is a demo of the app with authentication working on Google App Engine:
+Here is a working demo of the what you will develop with full authentication working on Google App Engine:
 
-[Working DEMO of the App. Check it out!](https://firebase-signup-signin.appspot.com/)
+[Working DEMO of Firebase sign-up and sign-in authentication. Check it out!](https://firebase-signup-signin.appspot.com/)
 
 ### Setting up index.html
 
@@ -24,7 +24,7 @@ So here are the scripts we need:
 
 * Knockout - so I can bind my application memory to my html view in an organised and simple way
 * Firebase - so I can access a database in the cloud that talks easily with my javascript
-* FirebaseAuth - so I can setup user signup and login really easily
+* Firebase-simple-login - so I can setup user signup and login really easily
 * My own view models - the ko wiring from js to the html views
 
 And then throw in bootstrap so it will look presentable.
@@ -123,6 +123,7 @@ var SignUpViewModel = function() {
 
 	self.signup = function() {
 		console.log( "signing up "+self.userName() );
+		// alert( "signing up "+self.userName() );
 	}
 
 }
@@ -187,7 +188,7 @@ self.signup = function() {
 			// User not signed up so .... sign her up
 			console.log( "Signed up "+self.userName() );
 	    	console.log('Firebase User Id: ' + user.id + ', and Email: ' + user.email);
-			alert("You have been successfull signed up. Please login. Thank you.");
+			alert(user.email + " has successfully signed up. Please login.");
 	  	} else {
 			// User already signed up
 			alert( error.message +" Please login. Thank you.");
@@ -222,13 +223,47 @@ ko.applyBindings(ViewModels);
 	
 ```
 
-Remember to add this file to the head in your index.html It will be the last file after SignUpViewModel.js Whilst you are here, you may as well create a new javascript file called LoginViewModel.js
+Remember to add this file to the head in your index.html It will be the last file after SignUpViewModel.js Whilst you are here, you may as well create a new javascript file called LoginViewModel.js and add it your head tags before ViewModels.js.
+
+*index.html*
+
+```html
+
+<head>
+
+	<script type='text/javascript'
+			src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js">
+	</script>
+	<script type='text/javascript'
+			src='https://cdn.firebase.com/v0/firebase.js'>
+	</script>
+	<script type='text/javascript'
+			src='https://cdn.firebase.com/v0/firebase-simple-login.js'>
+	</script>
+	<script type='text/javascript'
+			src="js/SignUpViewModel.js"
+			defer="defer">
+	</script>
+	<script type='text/javascript'
+			src="js/LoginViewModel.js"
+			defer="defer">
+	</script>
+	<script type='text/javascript'
+			src="js/ViewModels.js"
+			defer="defer">
+	</script>
+	
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+```
 
 ko.applyBindings is called on both view models on initialization so that all our wiring is in place. 
 
-*Remember: Remove the ko.applyBindings call in SignUpViewModel.js.* 
+**Remember: Remove the ko.applyBindings call in SignUpViewModel.js.** 
 
-We now need to edit index.html as follows:
+We now need to edit the body of index.html (our Views) as follows:
 
 ```html
 
@@ -279,7 +314,7 @@ We now need to edit index.html as follows:
 	
 ```
 
-The main thing to note is how we make explicit references to each ViemModel in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the ViewModel so we can access its particular functions and properties. The important thing is that we can now make a call to the login ViewModel from the signup View. **See how the function loginVM.makeVisible is called when we click the login button in the sign-up view.** 
+The main thing to note is how we make explicit references to each Viem Model in the html. For example, on clicking the signup button we explicitly call signupVM.signup instead of just signup. We need to specify the View Model so we can access its particular functions and properties. The important thing is that we can now make a call to the login View Model from the signup View. **See how the function loginVM.makeVisible is called when we click the login button in the sign-up view.** 
 
 Another point to note is that we are making use of a new knockout piece of wiring called visible. 
 
@@ -313,10 +348,13 @@ var LoginViewModel = function(makeLoginViewVisible) {
 	    	// an error occurred while attempting login
 	    	console.log(error);
 			alert("User name or password is not correct. Please try again.");
+			
+			// Make the login view visible again
+			self.isVisible(true);
 	  	} else if (user) {
 	    	// user authenticated with Firebase
 	    	console.log('Logging In User ID: ' + user.id + ', Provider: ' + user.provider);  
-	    	alert("Create a new AppViewModel for your app")
+	    	alert("LOGIN SUCCESSFUL. Create a new AppViewModel for your app")
 	  	} else {
 	    	// user is logged out
 			console.log("User logged out");
@@ -353,7 +391,7 @@ var LoginViewModel = function(makeLoginViewVisible) {
 
 ```
 
-The code for LoginViewModel.js is very similar to SignUpViewModel.js The main difference is the way we use authClient. When we first create we supply with a callback function that will handle our login request. When we were signing up we did not need these. Also when the user clicks the login button a call is made to authClient.login(...) as opposed to authClient.createUser(...) that fires on clicking the sign-up button. 	
+The code for LoginViewModel.js is very similar to SignUpViewModel.js The main difference is the way we use authClient. When we first create authClient we supply it with a callback function that will handle our login request. For signing up our callback function was blank. Also when the user clicks the login button a call is made to authClient.login(...) as opposed to authClient.createUser(...) that fires on clicking the sign-up button. 	
 
 Another key point is to do with multiple view models. Communications between view models is not just limited to HTML we can also make calls between view models in javascript. Look at the code for self.makeVisible()
 
@@ -370,13 +408,13 @@ Another key point is to do with multiple view models. Communications between vie
 
 Now we you go to click login you will have successfully logged in if you get the following alert:
 
-*Create a new AppViewModel for your app*
+*LOGIN SUCCESSFUL. Create a new AppViewModel for your app*
 
 **You have now been full authenticated to proceed into our app!!**
 
 Full code for Sign-up and Sign-in authentication can be downloaded here:
 
-###[Download Firebase Sign-Up and Sign-In Working Example Code](https://github.com/nigelkelly/firebase-signup-signin/tree/88eb9baec9051f45d24f480f5a51f7322a93a821)###
+###[Download Firebase Sign-Up and Sign-In Working Example Code](https://github.com/nigelkelly/firebase-signup-signin)###
 
  
 ###Conclusion
