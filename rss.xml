@@ -8,7 +8,14 @@
 	<description>Articles about Firebase, Knockout, javascript and nobackend development</description>
 
 	<link>http://nigelkelly.github.io</link>
-
+    
+    <item>
+        <title>Simple Signup and Login with Firebase and Knockoutjs</title>
+        <description>In this tutorial you will learn how to set up an effective registration and authentication process for your web app using just Firebase, Knockout and Twitter Bootstrap. This is a nobackend app</description>  
+        <link>ttp://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html</link>  
+    
+    </item>
+    
 	<item>
 
 		<title>The Good and Bad of Firebase Syncing</title>
