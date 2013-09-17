@@ -1,14 +1,14 @@
 ---
-title: Super Simple Signup and Login with Firebase and Knockoutjs
+title: Simple Signup and Login with Firebase and Knockoutjs
 layout: post
-tags: firebase, knockoutjs, knockout, ko, javascript, syncing, nobackend
+tags: firebase,knockoutjs,knockout,ko,javascript,syncing,nobackend
 excerpt: In this tutorial you will learn how to set up an effective registration and authentication process for your web app using just Firebase, Knockout and Twitter Bootstrap. This is a nobackend app.
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
 
 *19 Sept 2013*
-## Firebase signup and login tutorial
+## Simple Signup and Login with Firebase and Knockoutjs
 
 In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, knockoutjs and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build.
 
