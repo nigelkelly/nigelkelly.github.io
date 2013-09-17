@@ -14,7 +14,7 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 In this tutorial you will learn how to set up an effective registration and authentication process for your web app using Firebase, Knockoutjs and Twitter Bootstrap.... and..... that's it. No backend mysql database, apache web server, ubuntu linux or ruby scripting is required. You just need to know javascript. You don't even need to know nodejs, npm or requirejs. There really is no back end and it is simple to build. 
 
-#### [Read More](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockoutjs.html)
+#### [Read More](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html)
 
 
 ### Older Posts
