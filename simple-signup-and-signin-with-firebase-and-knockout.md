@@ -439,6 +439,8 @@ ko.applyBindings(ViewModels);
 
 Get hacking on AppViewModel.js
 
-The World is your oyster.
+The World is your oyster.               
+            
+Technorati ref X3APRN72M9R8
 
 ###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
