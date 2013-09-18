@@ -443,4 +443,4 @@ The World is your oyster.
             
 Technorati ref X3APRN72M9R8
 
-###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1mmvs2/simple_signup_and_login_with_firebase_and/) or [Hacker News](https://news.ycombinator.com/item?id=6404567)**
