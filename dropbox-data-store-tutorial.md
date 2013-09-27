@@ -10,11 +10,10 @@ layout: post
 
 ### Limitations of the new Data Store API you should be aware of
 
-For me, the new backend is no backend. Well there is a backend but not as we knew it. The new backend is a database service with a nice javascript API that talks JSON and syncs clients quietly and robustly. Developers looking to bootstrap quickly just need to know a javascript API. They do not need to know linux command line, Apahce config, Mysql config, scripting languages, etc 
+For this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not very easy to do with the Data Store API, at least not in a transparent way. 
 
-Firebase is currently leading the pack. PouchDB is a very fine open source alternative and to my mind is a very credible dark horse in the race. Now Dropbox has entered the arena with the Data Store API.
+At the moment I feel the Data Store API is missing some crucial elements that developers require:
 
-For this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not possible with the Data Store API, at least not in a transparent way. At the moment I feel the Data Store API is missing some crucial elements that developers require:
 * There is no concept of a central database repository where a developer can drill all data that flows through his app. When you do the tutorial below you will see that the developer can only see the data associated with his personal dropbox account. He cannot see data in other user accounts. He can probably build this database elsewhere via the API but that sounds like alot of work.
 * Because there is no concept of a central database repository for your app users cannot communicate via the API like they can with the Firebase or PouchDB APIs. Users seem to exist in isolation. So in the task tutorial presented below there would be no simple way to share your tasks with another person on your team.
 * Your apps need to approved by Dropbox. This is red tape I will not get with Firebase or PouchDB.
@@ -23,16 +22,23 @@ For this tutorial I had actually wanted to develop a simple app which would allo
 
 ### The Tutorial - A very simple task manager
 
-The tutorial is very heavily based on the existing dropbox javascript tutorial. This tutorial is useful because it clearly spells out how to get things workings. The dropbox tutorial leaves a bit of guesswork for dummies like to work out. So you may find this a bit easier.
+The tutorial is very heavily based on the existing Dropbox javascript tutorial. This tutorial is useful because it clearly spells out how to get things working. The Dropbox tutorial leaves a bit of guesswork for dummies like me to work out. So you may find this tutorial a bit easier.
 
-You need a Dropbox App key to use the Datastore API. So the first thing to do is to register yourself up as a dropbox developer at https://www.dropbox.com/developers and then setup a new app.
+You need a Dropbox App key to use the Datastore API. So the first thing to do is to register yourself up as a Dropbox developer at https://www.dropbox.com/developers and then setup a new app.
+
+![alt text](images/dropbox/dropbox-dev-signup.png "Dropbox developer signup")
 
 Then click App Console and Create App. You will now see the following screen. Config as shown in the picture below. I called my app "subscribers". Call it whatever you prefer.
 
+![alt text](images/dropbox/dropbox-app-setup.png "Dropbox app setup")
 
 The app will be now set up on the Dropbox side and you will be able to get your app key. 
 
-There is only one final awkward task left. You need to enter in OAuth redirect URIs. This sounds a little cryptic but just means your website url address must listed here so Dropbox knows your site is known. I developed this app using Google App Engine for my local web server. So my local web server was http://127.0.0.1:11080/ This will vary on the local web server you are using. **Note the ending slash / is required** See diagram below. It took me a while to work out why Dropbox did not recognise http://127.0.0.1:11080 This was very annoying and a bit too exacting for my tastes. We are scripting after all!
+![alt text](images/dropbox/datastores.png "Dropbox app key")
+
+There is only one final awkward task left. You need to enter in OAuth redirect URIs. This sounds a little cryptic but just means your website url address must be listed here so Dropbox knows your site. I developed this app using Google App Engine for my local web server. So my local web server was http://127.0.0.1:11080/ This will vary on the local web server you are using. **Note the ending slash / is required** See diagram below. It took me a while to work out why Dropbox did not recognise http://127.0.0.1:11080 This was very annoying and a bit too exacting for my tastes. We are scripting after all!
+
+![alt text](images/dropbox/dropbox.png "Dropbox app setup")
 
 You are now good to go.
 
@@ -40,7 +46,7 @@ To make things as simple and universal as possible I decided to just build the R
 
 Also I do not use a MV* like knockout, angularjs, emberjs, etc. I just use good old fashioned jquery. If I use a MV* then someone gets alienated. Everyone understands jquery. 
 
-In our head we will include the Data Store API, jquery and twitter bootstrap. The body contains two basic sections. One to login with dropbox and the other section renders the app. The login section will hide itself when the app section displays.
+In the head of index.html we will include the Data Store API, jquery and twitter bootstrap. The body contains two basic sections. One to login with dropbox and the other section renders the app. The login section will hide itself when the app section displays.
 
 
 ```html
@@ -132,7 +138,7 @@ And that is it. Everything should work. Go ahaed and add tasks.
 
 Basically a table called tasks has been created in the Data Store. Each record of the tasks table is a task. The fields of the table are taskname, completed, created. If you are a new user a blank table is created and will sync quietly with Dropbox in the background as you add new tasks. IF are an existing user the existing table of tasks will be downloaded from Dropbox.
 
-The code block at the end is a callback that listens for records that change. So every time you create a new record it gets rendered to your task list on screen as well as being synced back to your dropbox.
+The code block at the end is a callback that listens for records that change. So every time you create a new record it gets rendered to your task list on screen as well as being synced back to your Dropbox.
 
 Hopefully you find this useful.
 
