@@ -10,15 +10,13 @@ layout: post
 
 ### Limitations of the new Data Store API you should be aware of
 
-For this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not very easy to do with the Data Store API, at least not in a transparent way. 
+For this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not very easy to do with the Data Store API, at least not in a transparent way. At the moment I feel the Data Store API is missing some crucial elements that developers require:
 
-At the moment I feel the Data Store API is missing some crucial elements that developers require:
-
-* There is no concept of a central database repository where a developer can drill all data that flows through his app. When you do the tutorial below you will see that the developer can only see the data associated with his personal dropbox account. He cannot see data in other user accounts. He can probably build this database elsewhere via the API but that sounds like alot of work.
-* Because there is no concept of a central database repository for your app users cannot communicate via the API like they can with the Firebase or PouchDB APIs. Users seem to exist in isolation. So in the task tutorial presented below there would be no simple way to share your tasks with another person on your team.
+* There is no concept of a central database repository where a developer can drill all data that flows through his app or even create reports from that data. When you do the tutorial below you will see that the developer can only see the data associated with his personal Dropbox account. He cannot see data in other user accounts. He can probably build this database elsewhere via the API but that sounds like alot of work that you get out of the box with Firebase and PouchDB.
+* Because there is no concept of a central database repository for your app, users cannot communicate via the API like they can with the Firebase or PouchDB APIs. Users seem to exist in isolation. So in the task tutorial presented below there would be no simple way to share your tasks with another person on your team.
 * Your apps need to approved by Dropbox. This is red tape I will not get with Firebase or PouchDB.
-* You need to run a local web server. With Firebase you can open index.hmtl from the file system directly and it just works. One less moving part if you just want to do a quick demo.
-* These weaknesses of course have a flip side. Users of the app can be safe in the knowledge that developers cannot easily look at their data. For example if I was to build a multi user task manager in Firebase I could see every user's task if I really wanted to very easily. With this API developers cannot do this easily. Looking at the API I suspect they could build their own database if they really wanted to.
+* You need to run a local web server. With Firebase you can open index.hmtl from the file system directly and it just starts syncing. One less moving part if you just want to do a quick demo.
+* These weaknesses of course have a flip side. Users of the app can be safe in the knowledge that developers cannot easily look at their data. For example if I was to build a multi user task manager in Firebase I could see every user task very easily. With this Dropbox API developers cannot do this easily. 
 
 ### The Tutorial - A very simple task manager
 
