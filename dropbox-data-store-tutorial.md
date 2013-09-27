@@ -1,0 +1,142 @@
+---
+title: A Dropbox Data Store API Tutorial and an analysis of the Data Store API limitations
+layout: post
+tags: dropbox,datastore API,json,jquery,bootstrap,javascript,syncing,nobackend,MV*
+excerpt: In this tutorial you will learn how to set up a simple task manager and registration process with the new Dropbox Data Store API 
+and get an understanding of the limitations of the Data Store API
+---
+                                                                                                
+[Home](http://nigelkelly.github.io)
+
+*27 Sept 2013*
+## A Dropbox Data Store API Tutorial and how its limitations relative to Firebase
+
+### Limitations of the new Data Store API you should be aware of
+
+For me, the new backend is no backend. Well there is a backend but not as we knew it. The new backend is a database service with a nice javascript API that talks JSON and syncs clients quietly and robustly. Developers looking to bootstrap quickly just need to know a javascript API. They do not need to know linux command line, Apahce config, Mysql config, scripting languages, etc 
+
+Firebase is currently leading the pack. PouchDB is a very fine open source alternative and to my mind is a very credible dark horse in the race. Now Dropbox has entered the arena with the Data Store API.
+
+For this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not possible with the Data Store API, at least not in a transparent way. At the moment I feel the Data Store API is missing some crucial elements that developers require:
+* There is no concept of a central database repository where a developer can drill all data that flows through his app. When you do the tutorial below you will see that the developer can only see the data associated with his personal dropbox account. He cannot see data in other user accounts. He can probably build this database elsewhere via the API but that sounds like alot of work.
+* Because there is no concept of a central database repository for your app users cannot communicate via the API like they can with the Firebase or PouchDB APIs. Users seem to exist in isolation. So in the task tutorial presented below there would be no simple way to share your tasks with another person on your team.
+* Your apps need to approved by Dropbox. This is red tape I will not get with Firebase or PouchDB.
+* You need to run a local web server. With Firebase you can open index.hmtl from the file system directly and it just works. One less moving part if you just want to do a quick demo.
+* These weaknesses of course have a flip side. Users of the app can be safe in the knowledge that developers cannot easily look at their data. For example if I was to build a multi user task manager in Firebase I could see every user's task if I really wanted to very easily. With this API developers cannot do this easily. Looking at the API I suspect they could build their own database if they really wanted to.
+
+### The Tutorial - A very simple task manager
+
+The tutorial is very heavily based on the existing dropbox javascript tutorial. This tutorial is useful because it clearly spells out how to get things workings. The dropbox tutorial leaves a bit of guesswork for dummies like to work out. So you may find this a bit easier.
+
+You need a Dropbox App key to use the Datastore API. So the first thing to do is to register yourself up as a dropbox developer at https://www.dropbox.com/developers and then setup a new app.
+
+Then click App Console and Create App. You will now see the following screen. Config as shown in the picture below. I called my app "subscribers". Call it whatever you prefer.
+
+
+The app will be now set up on the Dropbox side and you will be able to get your app key. 
+
+There is only one final awkward task left. You need to enter in OAuth redirect URIs. This sounds a little cryptic but just means your website url address must listed here so Dropbox knows your site is known. I developed this app using Google App Engine for my local web server. So my local web server was http://127.0.0.1:11080/ This will vary on the local web server you are using. **Note the ending slash / is required** See diagram below. It took me a while to work out why Dropbox did not recognise http://127.0.0.1:11080 This was very annoying and a bit too exacting for my tastes. We are scripting after all!
+
+You are now good to go.
+
+To make things as simple and universal as possible I decided to just build the Read and Create user functionality. User Deletion and Updating of tasks is not covered here but is trivial to add if you want to go on.
+
+Also I do not use a MV* like knockout, angularjs, emberjs, etc. I just use good old fashioned jquery. If I use a MV* then someone gets alienated. Everyone understands jquery. 
+
+In our head we will include the Data Store API, jquery and twitter bootstrap. The body contains two basic sections. One to login with dropbox and the other section renders the app. The login section will hide itself when the app section displays.
+
+
+```html
+<head>
+	<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="app.js" defer="defer"></script>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div id="login" class="btn btn-primary">Login with Dropbox</div>
+	
+	<div id="app" class="well">
+		<ul id="todos" class="list-group">
+	
+		</ul>
+	
+	
+		<input id="newTask" placeholder="Add Task"></input>
+	
+		<div id="add" class="btn btn-primary">Add Todo</div>	
+	</div>
+	
+</body>
+```
+
+And now create a new file called app.js and copy the following code in.
+
+
+```javascript
+// Authenticate with Dropbox
+var client = new Dropbox.Client({key: "yourAppKey"});
+client.authenticate({interactive: false}, function (error) {
+    if (error) {
+        alert('Authentication error: ' + error);
+    }
+});
+if (client.isAuthenticated()) {
+	$("#login").hide();
+	$("#app").show();
+}
+
+// Bind authenticate method to your login button and listen for click on button
+$("#login").on("click", client.authenticate());
+
+
+var datastoreManager = client.getDatastoreManager();
+datastoreManager.openDefaultDatastore(function (error, datastore) {
+    if (error) {
+        alert('Error opening default datastore: ' + error);
+    }
+
+    // Let the user read all tasks by printing them to the screen
+	var taskTable = datastore.getTable('tasks');
+	var results = taskTable.query({completed: false});
+	
+	for (var k=0; k<results.length;k++ ) {
+		$("#todos").append( "<li>"+results[k].get("taskname") + "</li>");
+	}
+	$("li").addClass("list-group-item");
+	
+	
+	// Let users add tasks
+	$("#add").on("click", function() {
+		taskTable.insert({
+		    taskname: $("#newTask").val(),
+		    completed: false,
+		    created: new Date()
+		});
+		
+	});
+	
+	// As new tasks are added automatically update the task list
+	datastore.recordsChanged.addListener(function (event) {
+		var records = event.affectedRecordsForTable('tasks');
+		for (var k=0; k<records.length;k++ ) {
+			$("#todos").append( "<li>"+records[k].get("taskname") + "</li>");
+		}
+		$("li").addClass("list-group-item");	
+	});		
+});
+```
+
+And that is it. Everything should work. Go ahaed and add tasks.
+
+### More detail about what is happening
+
+Basically a table called tasks has been created in the Data Store. Each record of the tasks table is a task. The fields of the table are taskname, completed, created. If you are a new user a blank table is created and will sync quietly with Dropbox in the background as you add new tasks. IF are an existing user the existing table of tasks will be downloaded from Dropbox.
+
+The code block at the end is a callback that listens for records that change. So every time you create a new record it gets rendered to your task list on screen as well as being synced back to your dropbox.
+
+Hopefully you find this useful.
+
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1lsb5q/the_dark_side_of_firebase_syncing_test_procedure/) or [Hacker News](https://news.ycombinator.com/item?id=6334385)**
