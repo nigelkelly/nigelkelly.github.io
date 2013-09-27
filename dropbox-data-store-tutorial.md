@@ -1,15 +1,12 @@
 ---
 title: A Dropbox Data Store API Tutorial and an analysis of the Data Store API limitations
 layout: post
-tags: dropbox,datastore API,json,jquery,bootstrap,javascript,syncing,nobackend,MV*
-excerpt: In this tutorial you will learn how to set up a simple task manager and registration process with the new Dropbox Data Store API 
-and get an understanding of the limitations of the Data Store API
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
 
 *27 Sept 2013*
-## A Dropbox Data Store API Tutorial and how its limitations relative to Firebase
+## A Dropbox Data Store API Tutorial and an analysis of the Data Store API limitations
 
 ### Limitations of the new Data Store API you should be aware of
 
