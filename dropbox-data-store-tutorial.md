@@ -26,11 +26,11 @@ The tutorial is very heavily based on the existing Dropbox javascript tutorial. 
 
 You need a Dropbox App key to use the Datastore API. So the first thing to do is to register yourself up as a Dropbox developer at https://www.dropbox.com/developers and then setup a new app.
 
-![alt text](images/dropbox/dropbox-dev-signup.png "Dropbox developer signup")
+![alt text](images/dropbox/dropbox_dev_signup.png "Dropbox developer signup")
 
 Then click App Console and Create App. You will now see the following screen. Config as shown in the picture below. I called my app "subscribers". Call it whatever you prefer.
 
-![alt text](images/dropbox/dropbox-app-setup.png "Dropbox app setup")
+![alt text](images/dropbox/dropbox_app_setup.png "Dropbox app setup")
 
 The app will be now set up on the Dropbox side and you will be able to get your app key. 
 
