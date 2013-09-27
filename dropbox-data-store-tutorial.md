@@ -134,7 +134,7 @@ And that is it. Everything should work. Go ahaed and add tasks.
 
 ### More detail about what is happening
 
-Basically a table called tasks has been created in the Data Store. Each record of the tasks table is a task. The fields of the table are taskname, completed, created. If you are a new user a blank table is created and will sync quietly with Dropbox in the background as you add new tasks. IF are an existing user the existing table of tasks will be downloaded from Dropbox.
+Basically a table called tasks has been created in the Data Store. Each record of the tasks table is a task. The fields of the table are taskname, completed, created. If you are a new user a blank table is created and will sync quietly with Dropbox in the background as you add new tasks. If you are an existing user the existing table of tasks will be downloaded from Dropbox.
 
 The code block at the end is a callback that listens for records that change. So every time you create a new record it gets rendered to your task list on screen as well as being synced back to your Dropbox.
 
