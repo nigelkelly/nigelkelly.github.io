@@ -134,8 +134,10 @@ datastoreManager.openDefaultDatastore(function (error, datastore) {
 		$("li").addClass("list-group-item");	
 	});		
 });
-```
+```  
+To get this to work you will need to set up a local web server. One option is google app engine. [Here](http://xmodulo.com/2013/02/how-to-make-static-web-site-for-free-via-google-app-engine.html) is a good tutorial about setting up google app engine to be a static page web server.
 
+                                       
 And that is it. Everything should work. Go ahead and add tasks.
 
 ### More detail about what is happening
