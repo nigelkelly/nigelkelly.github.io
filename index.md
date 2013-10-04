@@ -12,7 +12,10 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 [Limitations of the Dropbox Data Store API](http://nigelkelly.github.io/dropbox-data-store-tutorial.html) *4 Oct 2013*  
 
-#### [Read More](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html)
+In this tutorial you will learn how to set up a simple task manager and registration process with the new Dropbox Data Store API 
+and get an understanding of the limitations of the Data Store API.
+
+#### [Read More](http://nigelkelly.github.io/dropbox-data-store-tutorial.html)
 
 
 ### Older Posts
