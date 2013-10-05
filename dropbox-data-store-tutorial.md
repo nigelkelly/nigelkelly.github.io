@@ -146,4 +146,4 @@ The code block at the end is a callback that listens for records that change. So
 Hopefully you find this useful.
 
 
-###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest)**
