@@ -34,8 +34,4 @@
 	  	console.log('data-sync-error');
 	}	
 	
-	setTimeout(function() {
-		addSubscriber();
-	}, 1000);
-	
 	newSubscriberButton.addEventListener("click", addSubscriber)
