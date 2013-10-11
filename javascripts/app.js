@@ -1,6 +1,6 @@
 	
 	var newSubscriberEmail = document.getElementById('new-sub-email');
-	var newSubscriberThanks = document.getElementById('new-sub-thanks');
+	
 	var newSubscriberButton = document.getElementById('new-sub-button');
 	
 	var db = new PouchDB('subscribers');
@@ -18,7 +18,7 @@
 			if (!err) {
 	      		console.log('Successfully added subscriber '+subscriber.email);
 				newSubscriberEmail.value = "";
-				newSubscriberThanks.value = "Thanks for subscribing";
+				
 	    	}
 	  });
 
