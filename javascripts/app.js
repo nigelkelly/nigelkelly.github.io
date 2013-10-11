@@ -18,7 +18,7 @@
 			if (!err) {
 	      		console.log('Successfully added subscriber '+subscriber.email);
 				newSubscriberEmail.value = "";
-				newSubscriberThanks.value = "Thanks for subscribing"
+				newSubscriberThanks.value = "Thanks for subscribing";
 	    	}
 	  });
 
