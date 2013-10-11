@@ -16,6 +16,7 @@
 	    
 			if (!err) {
 	      		console.log('Successfully added subscriber '+subscriber.email);
+				newSubscriberEmail.value = "";
 	    	}
 	  });
 
