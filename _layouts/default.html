@@ -4,12 +4,18 @@
 	<meta name="keywords" content={{ page.tags }}>
 	<meta name="author" content="Nigel Kelly">
 	<meta charset="UTF-8">
+	
+	<script src="http://download.pouchdb.com/pouchdb-nightly.js"></script>
+	<script src="javascripts/app.js" defer="defer"></script>
 	<link href="stylesheets/styles.css" rel="stylesheet"> 
 	                                                                                
 </head>
 
 <body>
 	
+	
+	<p><input id="new-sub-email" type="text" placeholder="Enter email here"></p>
+	<p><button id="new-sub-button">Subscribe to this blog</button></p>
 	
 	<section>
 	{{content}}

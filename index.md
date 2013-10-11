@@ -31,9 +31,10 @@ and get an understanding of the limitations of the Data Store API.
 *12 Sept 2013* [Firebase .on() Vs .once()](http://nigelkelly.github.io/)
 *12 Sept 2013* [Real time syncing with PouchDB](http://nigelkelly.github.io/)
 *12 Sept 2013* [King of real time syncing: Firebase Vs PouchDB](http://nigelkelly.github.io/)
-*12 Sept 2013* [Email Collection App with Firebase and knockoutjs](http://nigelkelly.github.io/)
+*12 Sept 2013* [Email Collection App with PouchDB](http://nigelkelly.github.io/)
 *12 Sept 2013* [Sortable Task Manager with Firebase and knockoutjs](http://nigelkelly.github.io/)
 *12 Sept 2013* [Sortable Kanban with Firebase and knockoutjs](http://nigelkelly.github.io/)
 *12 Sept 2013* [User Sign Up and Sign On with Firebase and knockoutjs](http://nigelkelly.github.io/)
 *12 Sept 2013* [knockoutjsjs - Communications and messaging between multiple View Models](http://nigelkelly.github.io/)
+*12 Sept 2013* [autoboot](http://nigelkelly.github.io/)
 -->
