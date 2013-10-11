@@ -9,7 +9,7 @@
     
 		var subscriber = {
 	    	_id: new Date().toISOString(), //required
-	    	email: newSubscriberEmail.value;	  	
+	    	email: newSubscriberEmail.value	  	
 		};
 	  	
 		db.put(subscriber, function callback(err, result) {
