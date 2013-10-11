@@ -146,4 +146,4 @@ The code block at the end is a callback that listens for records that change. So
 Hopefully you find this useful.
 
 
-###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1o8joc/limitations_of_the_dropbox_data_store_api/) or [Hacker News](https://news.ycombinator.com/item?id=6534894)**
