@@ -34,4 +34,8 @@
 	  	console.log('data-sync-error');
 	}	
 	
+	if (remoteCouch) {
+	    sync();
+	}
+	
 	newSubscriberButton.addEventListener("click", addSubscriber)
