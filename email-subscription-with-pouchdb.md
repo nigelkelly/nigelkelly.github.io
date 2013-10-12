@@ -15,17 +15,17 @@ The result is at the top of the page.
 
 ### How to do it
 
-##### Sign up for a free account on [iriscouch](http://www.iriscouch.com/)
+**Sign up for a free account on [iriscouch](http://www.iriscouch.com/)**
 
 Pouchdb is a client database. We need a central couchdb database for pouchdb to talk to. We will use [iriscouch](http://www.iriscouch.com/)
 
 ![alt text](images/sub-pouchdb/iriscouch.png "Iriscouch signup")
 
-##### Create a new databases to store your subscribers
+**Create a new databases to store your subscribers**
 
 ![alt text](images/sub-pouchdb/create-couch.png "Iriscouch create db")
 
-##### Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
+**Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:**
 
 ```
 $ export HOST=http://myname.iriscouch.com
@@ -37,12 +37,11 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
   '"accept, authorization, content-type, origin"'
 ```
 
-
-##### Verify CORS is enabled. You should see something like below in Tools->Configuration
+**Verify CORS is enabled. You should see something like below in Tools->Configuration**
 
 ![alt text](images/sub-pouchdb/couch-config.png "Iriscouch config")
 
-NB export **HOST=http://myname.iriscouch.com** works if you signed up with Persona. Otherwise try:
+NB export *HOST=http://myname.iriscouch.com* works if you signed up with Persona. Otherwise try:
 
 ```
 $ export HOST=http://username:password@myname.iriscouch.com
@@ -50,7 +49,7 @@ $ export HOST=http://username:password@myname.iriscouch.com
 
 More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 
-##### In the head of your html files for home and post pages include the following:
+**In the head of your html files for home and post pages include the following:**
 	
 ```html
 <head>
@@ -61,7 +60,7 @@ More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 </head>
 ```
 
-5. In the body of your html files for home and post pages include the following
+**In the body of your html files for home and post pages include the following:**
 		
 ```html
 <body>
@@ -74,7 +73,7 @@ More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 
 ```
 
-##### In javascripts/app.js include the following:
+**In javascripts/app.js include the following:**
 
 ```javascript
 var db = new PouchDB('subscribers');
@@ -122,6 +121,6 @@ newSubscriberButton.addEventListener("click", addSubscriber);
 
 ```
 
-##### The End
+**The End**
 
 ###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest/)**
