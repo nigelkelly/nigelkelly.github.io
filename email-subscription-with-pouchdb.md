@@ -17,11 +17,11 @@ The result is at the top of the page.
 
 Sign up for an account on [iriscouch](http://www.iriscouch.com/)
 
-![alt text](images/sub-couchdb/iriscouch.png "Iriscouch signup")
+![alt text](images/sub-pouchdb/iriscouch.png "Iriscouch signup")
 
 Create a new databases to store your subscribers
 
-![alt text](images/sub-couchdb/create-couch.png "Iriscouch create db")
+![alt text](images/sub-pouchdb/create-couch.png "Iriscouch create db")
 
 Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
 
@@ -38,7 +38,7 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
 
 Verify CORS is enabled. You should see something like below in Tools->Configuration
 
-![alt text](images/sub-couchdb/couch-config.png "Iriscouch config")
+![alt text](images/sub-pouchdb/couch-config.png "Iriscouch config")
 
 NB export **HOST=http://myname.iriscouch.com** works if you signed up with Persona. Otherwise try:
 
