@@ -1,12 +1,12 @@
 ---
-title: Very simple PouchDB tutorial
+title: PouchDB for Idiots Like Me
 layout: post
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
 
 *4 Oct 2013*
-## Very simple PouchDB tutorial
+## PouchDB for Idiots Like Me
 
 ### The objective
 
