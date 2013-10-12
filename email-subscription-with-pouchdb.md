@@ -15,7 +15,7 @@ The result is at the top of the page.
 
 ### How to do it
 
-Sign up for an account on [iriscouch](http://www.iriscouch.com/)
+1. Sign up for an account on [iriscouch](http://www.iriscouch.com/)
 
 ![alt text](images/sub-pouchdb/iriscouch.png "Iriscouch signup")
 
@@ -23,7 +23,7 @@ Create a new databases to store your subscribers
 
 ![alt text](images/sub-pouchdb/create-couch.png "Iriscouch create db")
 
-Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
+2. Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
 
 ```
 $ export HOST=http://myname.iriscouch.com
@@ -36,7 +36,7 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
 ```
 
 
-Verify CORS is enabled. You should see something like below in Tools->Configuration
+3. Verify CORS is enabled. You should see something like below in Tools->Configuration
 
 ![alt text](images/sub-pouchdb/couch-config.png "Iriscouch config")
 
@@ -45,9 +45,10 @@ NB export **HOST=http://myname.iriscouch.com** works if you signed up with Perso
 ```
 $ export HOST=http://username:password@myname.iriscouch.com
 ```
+
 More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 
-In the head of your html files for home and post pages include the following:
+4. In the head of your html files for home and post pages include the following:
 	
 ```html
 <head>
@@ -58,7 +59,7 @@ In the head of your html files for home and post pages include the following:
 </head>
 ```
 
-In the body of your html files for home and post pages include the following
+5. In the body of your html files for home and post pages include the following
 		
 ```html
 <body>
@@ -71,7 +72,7 @@ In the body of your html files for home and post pages include the following
 
 ```
 
-In javascripts/app.js include the following:
+6. In javascripts/app.js include the following:
 
 ```javascript
 var db = new PouchDB('subscribers');
@@ -119,6 +120,6 @@ newSubscriberButton.addEventListener("click", addSubscriber);
 
 ```
 
-The End
+7. The End
 
 ###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest/)**
