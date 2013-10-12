@@ -15,15 +15,15 @@ The result is at the top of the page.
 
 ### How to do it
 
-1. Sign up for an account on [iriscouch](http://www.iriscouch.com/)
+##### Sign up for an account on [iriscouch](http://www.iriscouch.com/)
 
 ![alt text](images/sub-pouchdb/iriscouch.png "Iriscouch signup")
 
-Create a new databases to store your subscribers
+##### Create a new databases to store your subscribers
 
 ![alt text](images/sub-pouchdb/create-couch.png "Iriscouch create db")
 
-2. Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
+##### Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
 
 ```
 $ export HOST=http://myname.iriscouch.com
@@ -36,7 +36,7 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
 ```
 
 
-3. Verify CORS is enabled. You should see something like below in Tools->Configuration
+##### Verify CORS is enabled. You should see something like below in Tools->Configuration
 
 ![alt text](images/sub-pouchdb/couch-config.png "Iriscouch config")
 
@@ -48,7 +48,7 @@ $ export HOST=http://username:password@myname.iriscouch.com
 
 More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 
-4. In the head of your html files for home and post pages include the following:
+##### In the head of your html files for home and post pages include the following:
 	
 ```html
 <head>
@@ -72,7 +72,7 @@ More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
 
 ```
 
-6. In javascripts/app.js include the following:
+##### In javascripts/app.js include the following:
 
 ```javascript
 var db = new PouchDB('subscribers');
@@ -120,6 +120,6 @@ newSubscriberButton.addEventListener("click", addSubscriber);
 
 ```
 
-7. The End
+##### The End
 
 ###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest/)**
