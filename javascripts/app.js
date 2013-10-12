@@ -1,12 +1,11 @@
 	
-	var newSubscriberEmail = document.getElementById('new-sub-email');
-	
-	var newSubscriberButton = document.getElementById('new-sub-button');
-	
 	var db = new PouchDB('subscribers');
  	var remoteCouch = 'http://nigekelly.iriscouch.com/subscribers';
-  	 	
-	function addSubscriber(text) {
+  	
+	var newSubscriberEmail = document.getElementById('new-sub-email');
+	var newSubscriberButton = document.getElementById('new-sub-button');
+ 	
+	function addSubscriber() {
     
 		var subscriber = {
 	    	_id: new Date().toISOString(), //required
@@ -38,4 +37,4 @@
 	    sync();
 	}
 	
-	newSubscriberButton.addEventListener("click", addSubscriber)
+	newSubscriberButton.addEventListener("click", addSubscriber);
