@@ -6,15 +6,22 @@ layout: post
 [Home](http://nigelkelly.github.io)
 
 *4 Oct 2013*
-## Simple email subscription for your blog with PouchDB 
+## Very simple PouchDB tutorial
 
 ### The objective
 
-I wanted to create simple email subscription box for my blog using (PouchDB)[http://pouchdb.com/].
+I wanted to create a very simple email subscription box for my blog using [PouchDB](http://pouchdb.com/).
+The result is at the top of the page.
 
 ### How to do it
 
 * Sign up for an accounts on [iriscouch](http://www.iriscouch.com/)
+
+![alt text](images/sub-couchdb/iriscouch.png "Iriscouch signup")
+
+* Create a new databases to store your subscribers
+
+![alt text](images/sub-couchdb/create-couch.png "Iriscouch create db")
 
 * Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:
 
@@ -28,9 +35,19 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
   '"accept, authorization, content-type, origin"'
 ```
 
-* Verify CORS is enabled
 
-* In the <head> of your html files for home and post pages include the following:
+* Verify CORS is enabled. You should see something like below in Tools->Configuration
+
+![alt text](images/sub-couchdb/couch-config.png "Iriscouch config")
+
+NB export **HOST=http://myname.iriscouch.com** works if you signed up with Persona. Otherwise try:
+
+```
+$ export HOST=http://username:password@myname.iriscouch.com
+```
+More info in this [pouchdb tutorial](http://pouchdb.com/getting-started.html)
+
+* In the head of your html files for home and post pages include the following:
 	
 ```html
 <head>
@@ -41,7 +58,7 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
 </head>
 ```
 
-* In the <body> of your html files for home and post pages include the following
+* In the body of your html files for home and post pages include the following
 		
 ```html
 <body>
@@ -58,7 +75,9 @@ $ curl -X PUT $HOST/_config/cors/headers -d \
 
 ```javascript
 var db = new PouchDB('subscribers');
-var remoteCouch = 'http://nigekelly.iriscouch.com/subscribers';
+
+// REMEMBER TO UPDATE FOLLOWING WITH YOUR IRISCOUCH USER NAME
+var remoteCouch = 'http://yourname.iriscouch.com/subscribers';
 
 var newSubscriberEmail = document.getElementById('new-sub-email');
 var newSubscriberButton = document.getElementById('new-sub-button');
@@ -102,4 +121,4 @@ newSubscriberButton.addEventListener("click", addSubscriber);
 
 * The End
 
-###**Comment on [Reddit](http://www.reddit.com/r/javascript/comments/1o8joc/limitations_of_the_dropbox_data_store_api/) or [Hacker News](https://news.ycombinator.com/item?id=6534894)**
+###**Comment on [Reddit](http://www.reddit.com/r/javascript/) or [Hacker News](https://news.ycombinator.com/newest/)**
