@@ -15,7 +15,9 @@ The result is at the top of the page.
 
 ### How to do it
 
-##### Sign up for an account on [iriscouch](http://www.iriscouch.com/)
+##### Sign up for a free account on [iriscouch](http://www.iriscouch.com/)
+
+Pouchdb is a client database. We need a central couchdb database for pouchdb to talk to. We will use [iriscouch](http://www.iriscouch.com/)
 
 ![alt text](images/sub-pouchdb/iriscouch.png "Iriscouch signup")
 
