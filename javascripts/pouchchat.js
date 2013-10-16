@@ -1,5 +1,12 @@
 var db = new PouchDB('pouchchat');
 var remoteCouch = 'http://nigekelly.iriscouch.com/pouchchat';
+db.info(function(err, info) {
+	db.changes({
+    	since: info.update_seq,
+    	continuous: true,
+    	onChange: readMessages
+  	});
+});
 
 var newChatName = document.getElementById('chat-name');
 var newChatMessage = document.getElementById('chat-message');
