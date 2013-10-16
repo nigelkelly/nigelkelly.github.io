@@ -40,7 +40,7 @@ function redrawUI(messages) {
     ul.innerHTML = '';
     messages.forEach(function(message) {
 		var li=document.createElement("li");
-		var h = document.createElement("h3");
+		var h = document.createElement("h5");
 		var p = document.createElement("p");
 		var span = document.createElement("span");
 		
