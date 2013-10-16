@@ -42,6 +42,7 @@ function redrawUI(messages) {
 		var li=document.createElement("li");
 		var textnode=document.createTextNode(message.doc.name+" "+message.doc.content);
 		li.appendChild(textnode);
+		li.className = "list-group-item"
       	ul.appendChild(li);
     });
   }
