@@ -39,8 +39,10 @@ function redrawUI(messages) {
     var ul = document.getElementById('chat-messages');
     ul.innerHTML = '';
     messages.forEach(function(message) {
-		
-      	ul.appendChild( "<li>"+message.doc.content+"</li>" );
+		var li=document.createElement("li");
+		var textnode=document.createTextNode(message.doc.content);
+		li.appendChild(textnode);
+      	ul.appendChild(li);
     });
   }
 
