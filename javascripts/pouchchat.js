@@ -59,3 +59,4 @@ if (remoteCouch) {
 }
 
 addMessageButton.addEventListener("click", addMessage);
+readMessages();
