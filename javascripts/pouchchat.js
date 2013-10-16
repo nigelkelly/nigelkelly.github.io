@@ -40,14 +40,14 @@ function redrawUI(messages) {
     ul.innerHTML = '';
     messages.forEach(function(message) {
 		var li=document.createElement("li");
-		var h = document.createElement("h5");
+		var h = document.createElement("h7");
 		var p = document.createElement("p");
 		var span = document.createElement("span");
 		
 		
 		h.textContent = message.doc.name;
 		p.textContent = message.doc.content;
-		span.textContent = message.doc._id;
+		//span.textContent = message.doc._id;
 		
 		span.className = "badge";
 		
