@@ -15,7 +15,7 @@ function addMessage() {
 	db.put(message, function callback(err, result) {
    
 		if (!err) {
-	     	console.log('Successfully added message '+subscriber.content);
+	     	console.log('Successfully added message '+message.content);
 			newChatMessage.value = "";
 	   	}
   	});
