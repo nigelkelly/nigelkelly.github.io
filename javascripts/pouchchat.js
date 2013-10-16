@@ -22,6 +22,21 @@ function addMessage() {
 
 }
 
+function readMessages() {
+  db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+    redrawUI(doc.rows);
+  });
+}
+
+function redrawUI(messages) {
+    var ul = document.getElementById('chat-messages');
+    ul.innerHTML = '';
+    messages.forEach(function(message) {
+		
+      	ul.appendChild( "<li>" +message.name+ " says " +message.content + "</li>"););
+    });
+  }
+
 function sync() {
 	var opts = {continuous: true, complete: syncError};
 	db.replicate.to(remoteCouch, opts);
