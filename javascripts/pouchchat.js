@@ -40,7 +40,7 @@ function redrawUI(messages) {
     ul.innerHTML = '';
     messages.forEach(function(message) {
 		
-      	ul.appendChild( "<li>" +message.name+ " says " +message.content + "</li>" );
+      	ul.appendChild( "<li>" +message.doc.name+ " says " +message.doc.content + "</li>" );
     });
   }
 
