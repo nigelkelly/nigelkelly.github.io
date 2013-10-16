@@ -40,20 +40,20 @@ function redrawUI(messages) {
     ul.innerHTML = '';
     messages.forEach(function(message) {
 		var li=document.createElement("li");
-		var h = document.createElement("h7");
-		var p = document.createElement("p");
-		var span = document.createElement("span");
+		var pName = document.createElement("p");
+		var pMessage = document.createElement("p");
+		//var span = document.createElement("span");
 		
 		
-		h.textContent = message.doc.name;
-		p.textContent = message.doc.content;
+		pName.textContent = message.doc.name;
+		pMessage.textContent = message.doc.content;
 		//span.textContent = message.doc._id;
 		
-		span.className = "badge";
+		pName.className = "text-danger";
 		
-		li.appendChild(h);
-		li.appendChild(p);
-		li.appendChild(span);
+		li.appendChild(pName);
+		li.appendChild(pMessage);
+		//li.appendChild(span);
 		
 		li.className = "list-group-item";
       	ul.appendChild(li);
