@@ -8,6 +8,8 @@ db.info(function(err, info) {
   	});
 });
 
+
+var syncDom = document.getElementById('sync-wrapper');
 var newChatName = document.getElementById('chat-name');
 var newChatMessage = document.getElementById('chat-message');
 var addMessageButton = document.getElementById('new-message-button');
