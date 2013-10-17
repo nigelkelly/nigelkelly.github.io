@@ -63,6 +63,7 @@ function redrawUI(messages) {
   }
 
 function sync() {
+	syncDom.setAttribute('data-sync-state', 'syncing');
 	var opts = {continuous: true, complete: syncError};
 	db.replicate.to(remoteCouch, opts);
 	db.replicate.from(remoteCouch, opts);
@@ -70,6 +71,7 @@ function sync() {
 
 function syncError() {
   	console.log('data-sync-error');
+	syncDom.setAttribute('data-sync-state', 'error');
 }	
 
 if (remoteCouch) {
