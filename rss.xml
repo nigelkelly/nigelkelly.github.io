@@ -10,6 +10,15 @@
 	<link>http://nigelkelly.github.io</link>
     
 	<item>
+        <title>PouchDB Chat</title>
+        
+        <description>A real time chat app demo built on PouchDB</description>  
+        
+        <link>>http://nigelkelly.github.io/pouch-db.html</link>  
+    
+    </item>
+
+	<item>
         <title>Limitations of the Dropbox Data Store API</title>
         
         <description>or this tutorial I had actually wanted to develop a simple app which would allow me to collect email addresses of subscribers for my blog. I quickly concluded this was not very easy to do with the Data Store API, at least not in a transparent way. At the moment I feel the Data Store API is missing some crucial elements that developers require.</description>  
