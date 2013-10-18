@@ -44,13 +44,9 @@ function redrawUI(messages) {
 		var li=document.createElement("li");
 		var pName = document.createElement("p");
 		var pMessage = document.createElement("p");
-		//var span = document.createElement("span");
-		
 		
 		pName.textContent = message.doc.name;
 		pMessage.textContent = message.doc.content;
-		//span.textContent = message.doc._id;
-		
 		pName.className = "text-danger";
 		
 		li.appendChild(pName);
