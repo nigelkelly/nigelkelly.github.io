@@ -10,15 +10,16 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 ### Latest Post
 
-[Limitations of the Dropbox Data Store API](http://nigelkelly.github.io/dropbox-data-store-tutorial.html) *4 Oct 2013*  
+[PouchDB Chat](http://nigelkelly.github.io/pouchdb-chat.html) *18 Oct 2013*  
 
-In this tutorial you will learn how to set up a simple task manager and registration process with the new Dropbox Data Store API 
-and get an understanding of the limitations of the Data Store API.
+A real time chat app demo built on PouchDB
 
-#### [Read More](http://nigelkelly.github.io/dropbox-data-store-tutorial.html)
+#### [Read More](http://nigelkelly.github.io/pouchdb-chat.html)
 
 
 ### Older Posts
+
+[Limitations of the Dropbox Data Store API](http://nigelkelly.github.io/dropbox-data-store-tutorial.html) *4 Oct 2013*
 
 [Simple Sign-Up and Sign-In with Firebase and Knockoutjs](http://nigelkelly.github.io/simple-signup-and-signin-with-firebase-and-knockout.html) *17 Sept 2013* 
 
