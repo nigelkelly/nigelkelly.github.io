@@ -17,10 +17,7 @@
 </head>
 
 <body>
-	<p>
-		<input id="new-sub-email" type="text" placeholder="Enter email here">
-		<a id="new-sub-button">Subscribe to this blog</a>
-	</p>
+	
 	
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<section>
@@ -29,10 +26,11 @@
 	<div class="well">
 		<input id="chat-name" type="text" placeholder="Enter name">
 		<input id="chat-message" type="text" placeholder="Enter message">
-		<button id="new-message-button" class="btn btn-primary">Chat</button>
+		<button id="new-message-button" class="btn btn-primary">Chat</button>  
+		<p></p>
 		<div id="sync-wrapper">
-          <div id="sync-success" class="alert alert-success">Currently syncing. Be Patient. Refresh if taking too long.</div>
-          <div id="sync-error" class="alert alert-danger">There was a problem syncing. Try refreshing the page.</div>
+          <div id="sync-success" class="alert alert-success">Status: sync working. Be Patient. Refresh if taking too long.</div>
+          <div id="sync-error" class="alert alert-danger">Status: sync failed. Try refreshing the page.</div>
         </div>
 		<p></p>
 		<ul id="chat-messages" class="list-group">			

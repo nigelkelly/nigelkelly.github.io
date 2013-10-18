@@ -1,6 +1,8 @@
 ---
-title: PouchDB for Idiots Like Me
-layout: pouchdbchat
+title: PouchDB Chat
+layout: pouchdbchat      
+tags: pouchdb, iriscouch, couchdb, syncing, bootstrap
+excerpt: An online chat app build with pouchdb
 ---
                                                                                                 
 [Home](http://nigelkelly.github.io)
