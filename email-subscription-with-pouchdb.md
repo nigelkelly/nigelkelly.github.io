@@ -27,12 +27,15 @@ Pouchdb is a client database. We need a central couchdb database for pouchdb to 
 
 **Enable CORS so that web apps can CRUD your iriscouch databases. From your terminal command line:**
 
+It is important that you specify a origin. My origin is [http://nigelkelly.github.io](http://nigelkelly.github.io) .
+If you leave it as a wildcard "*" or "localhost" then anyone could CRUD your database on IrisCouch. 
+
 ```
 $ export HOST=http://myname.iriscouch.com
 $ curl -X PUT $HOST/_config/httpd/enable_cors -d '"true"'
-$ curl -X PUT $HOST/_config/cors/origins -d '"*"'
+$ curl -X PUT $HOST/_config/cors/origins -d '"http://mysite.com"'
 $ curl -X PUT $HOST/_config/cors/credentials -d '"true"'
-$ curl -X PUT $HOST/_config/cors/methods -d '"GET, PUT, POST, HEAD, DELETE"'
+$ curl -X PUT $HOST/_config/cors/methods -d '"GET, PUT, POST, HEAD"'
 $ curl -X PUT $HOST/_config/cors/headers -d \
   '"accept, authorization, content-type, origin"'
 ```

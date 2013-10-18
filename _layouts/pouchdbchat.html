@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	
 	<script src="http://download.pouchdb.com/pouchdb-nightly.js"></script>
-	<script src="javascripts/app.js" defer="defer"></script>
 	<script src="javascripts/pouchchat.js" defer="defer"></script>
 	<link href="stylesheets/pygment_trac.css" rel="stylesheet"> 
 	<link href="stylesheets/styles.css" rel="stylesheet"> 
@@ -32,8 +31,8 @@
 		<input id="chat-message" type="text" placeholder="Enter message">
 		<button id="new-message-button" class="btn btn-primary">Chat</button>
 		<div id="sync-wrapper">
-          <div id="sync-success">Currently syncing. Be Patient. Refresh if taking too long.</div>
-          <div id="sync-error">There was a problem syncing</div>
+          <div id="sync-success" class="alert alert-success">Currently syncing. Be Patient. Refresh if taking too long.</div>
+          <div id="sync-error" class="alert alert-danger">There was a problem syncing. Try refreshing the page.</div>
         </div>
 		<p></p>
 		<ul id="chat-messages" class="list-group">			
