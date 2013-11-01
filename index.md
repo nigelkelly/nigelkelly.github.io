@@ -10,11 +10,11 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 ### Latest Post
 
-[PouchDB Chat - How to make it](http://nigelkelly.github.io/how-to-make-pouchdb-chat.html)
+[PouchDB Chat - How to make it](http://nigelkelly.github.io/how-to-make-pouchdb-chat.html) *1 Nov 2013*
 
-How to build and code a real time chat app demo built with PouchDB and javascript. No backend coding required.
+How to build and code a real time chat app with PouchDB and javascript. No backend coding required.
 
-#### [Read More](http://nigelkelly.github.io/pouchdb-chat.html)
+#### [Read More](http://nigelkelly.github.io/how-to-make-pouchdb-chat.html)
 
 
 ### Older Posts
