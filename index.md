@@ -10,14 +10,16 @@ excerpt: This blog contains articles on developing nobackend web apps using new 
 
 ### Latest Post
 
-[PouchDB Chat](http://nigelkelly.github.io/pouchdb-chat.html) *18 Oct 2013*  
+[PouchDB Chat - How to make it](http://nigelkelly.github.io/how-to-make-pouchdb-chat.html)
 
-A real time chat app demo built on PouchDB
+How to build and code a real time chat app demo built with PouchDB and javascript. No backend coding required.
 
 #### [Read More](http://nigelkelly.github.io/pouchdb-chat.html)
 
 
 ### Older Posts
+
+[PouchDB Chat](http://nigelkelly.github.io/pouchdb-chat.html) *18 Oct 2013*  
 
 [Limitations of the Dropbox Data Store API](http://nigelkelly.github.io/dropbox-data-store-tutorial.html) *4 Oct 2013*
 

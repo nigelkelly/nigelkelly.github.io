@@ -8,7 +8,16 @@
 	<description>Articles about Firebase, Knockout, javascript and nobackend development</description>
 
 	<link>http://nigelkelly.github.io</link>
+     
+	<item>
+        <title>How to make PouchDB Chat</title>
+        
+        <description>How to build and code a real time chat app demo built with PouchDB and javascript. No backend coding required.</description>  
+        
+        <link>>http://nigelkelly.github.io/how-to-make-pouch-db.html</link>  
     
+    </item>
+
 	<item>
         <title>PouchDB Chat</title>
         

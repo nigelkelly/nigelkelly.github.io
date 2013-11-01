@@ -5,7 +5,7 @@ layout: post
                                                                                                 
 [Home](http://nigelkelly.github.io)
 
-*25 Oct 2013*
+*1 Nov 2013*
 ## PouchDB Chat - How to make it!   
 
 ### The objective
